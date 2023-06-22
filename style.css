@@ -4,9 +4,12 @@
     box-sizing: border-box;
 }
 
+body, html{
+    overflow-x: hidden;
+}
 
 .matter-background{
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    height: 200vh;
+    overflow-x: hidden;
 }

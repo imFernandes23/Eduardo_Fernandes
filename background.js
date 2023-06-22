@@ -31,21 +31,30 @@ let downWall = Bodies.rectangle(
     matter_background.clientHeight + thiccness / 2,
     20000,
     thiccness, 
-    { isStatic: true });
+    { 
+        isStatic: true,
+        render: {visible: false}
+     });
 
 let upWall = Bodies.rectangle(
     matter_background.clientWidth / 2,
     - thiccness / 2,
     20000,
     thiccness, 
-    { isStatic: true });
+    { 
+        isStatic: true,
+        render: {visible: false}
+     });
 
 let rightWall = Bodies.rectangle(
     matter_background.clientWidth + thiccness / 2,
     matter_background.clientHeight / 2,
     thiccness,
     matter_background.clientHeight * 5,
-    {isStatic: true}
+    { 
+        isStatic: true,
+        render: {visible: false}
+     }
 )
 
 let leftWall = Bodies.rectangle(
@@ -53,12 +62,15 @@ let leftWall = Bodies.rectangle(
     matter_background.clientHeight / 2,
     thiccness,
     matter_background.clientHeight * 5,
-    {isStatic: true}
+    { 
+        isStatic: true,
+        render: {visible: false}
+     }
 )
 
 for(let i = 0; i < 100; i++){
     let circle = Bodies.circle(i, 10,
-        Math.random() * 40
+        Math.random() * 40 + 5
         , {
         friction: 0.3,
         frictionAir: 0.00001,
@@ -80,6 +92,9 @@ let mouseConstraint = Matter.MouseConstraint.create(engine, {
         }
     }
 })
+
+mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
 Composite.add(engine.world, mouseConstraint)
 
