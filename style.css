@@ -10,6 +10,6 @@ body, html{
 
 .matter-background{
     width: 100vw;
-    height: 200vh;
+    height: 100vh;
     overflow-x: hidden;
 }
