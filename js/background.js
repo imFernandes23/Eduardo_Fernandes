@@ -22,6 +22,8 @@ class Sketch{
         this.time = 0;
         this.width = window.innerWidth;
         this.height = window.innerHeight;
+        this.margin = 3;
+        this.marginR = 0
         this.physics();
         this.initPaper();
         this.namePos();
@@ -48,7 +50,8 @@ class Sketch{
                 showVelocity: false,
                 background: "white",
                 wireframes: false,
-                showAngleIndicator: false
+                showAngleIndicator: false,
+                devicePixelRatio:2,
             }
         });
         Render.run(this.render);
@@ -73,7 +76,9 @@ class Sketch{
         collisionFilter: {
             //mask: mouseCategory,
             category: mouseCategory
-        },
+        },render:{
+            fillStyle: 'transparent'
+        }
         })
 
         this.mouse = Mouse.create(this.render.canvas)
@@ -104,14 +109,27 @@ class Sketch{
     }
 
     namePos(){
+        let startW = this.width * 0.05;
+        let startH = this.height * 0.25;
+        if(this.width > this.height){
+            this.marginR = this.height / 200
+        }else{
+            this.marginR = this.width / 150
+        }
+
+        if(this.marginR < 2.5 ){
+            this.margin = 2.5
+        }else if(this.marginR > 5){
+            this.margin = 5
+        }
         this.nameData = [];
         for(let line in nameData){
 
             for(let col in nameData[line]){
 
                 this.nameData.push({
-                    x: nameData[line][col].x * 4,
-                    y: nameData[line][col].y * 4,
+                    x: nameData[line][col].x * this.margin + startW,
+                    y: nameData[line][col].y * this.margin + startH,
                 })
 
             }
@@ -170,9 +188,9 @@ window.addEventListener('resize', function(){
     animation.width = window.innerWidth;
     animation.height = window.innerHeight;
     animation.handleResize()
+    animation.namePos()
 })
 
-animation.render.canvas.removeEventListener('contextmenu')
 
 console.log(animation.cursor)
 
