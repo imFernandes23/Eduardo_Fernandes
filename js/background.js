@@ -75,12 +75,23 @@ class Sketch{
         restitution: 1,
         collisionFilter: {
             //mask: mouseCategory,
-            category: mouseCategory
+            category: nameCategory
         },render:{
             fillStyle: 'transparent'
         }
         })
 
+        this.circle = Bodies.circle(100, 100,50,{
+            stiffness: 1,
+            restitution: 1,
+            collisionFilter: {
+                //mask: mouseCategory,
+                category: cenarioCategory
+            }
+            })
+
+        
+            World.add(this.engine.world, this.circle)
         this.mouse = Mouse.create(this.render.canvas)
         World.add(this.engine.world, this.cursor)
 
@@ -91,17 +102,19 @@ class Sketch{
                 Bodies.circle(
                     this.nameData[c].x,
                     this.nameData[c].y, 
-                    1.2,{
+                    1.3,{
                         density: 0.005,
                         restitution: 0,
                         render:{
                             fillStyle: 'black'
                         },collisionFilter: {
-                            category: mouseCategory,
+                            group: -1,
+                            mask: nameCategory
                         }
                     }     
                 )
             )
+            
         }
 
         World.add(this.engine.world, this.nameCircles)
@@ -109,19 +122,18 @@ class Sketch{
     }
 
     namePos(){
-        let startW = this.width * 0.05;
+        // relative position
+        let startW = this.width * 0.1;
         let startH = this.height * 0.25;
-        if(this.width > this.height){
-            this.marginR = this.height / 200
+        
+        this.marginR = this.width / 150
+        if(this.marginR > 5){
+            this.margin = 5
         }else{
-            this.marginR = this.width / 150
+            this.margin = this.marginR
         }
 
-        if(this.marginR < 2.5 ){
-            this.margin = 2.5
-        }else if(this.marginR > 5){
-            this.margin = 5
-        }
+
         this.nameData = [];
         for(let line in nameData){
 

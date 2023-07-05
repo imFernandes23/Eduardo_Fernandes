@@ -3,9 +3,9 @@ const ctx = canvasName.getContext('2d');
 
 ctx.fillStyle = 'white'
 ctx.font = 'italic bold 25px serif' ;
-ctx.fillText('Eduardo', 0, 20)
+ctx.fillText("Hello, I'm", 0, 20)
 ctx.font = 'italic bold 25px serif';
-ctx.fillText('Fernandes', 5 ,40)
+ctx.fillText('Eduardo', 5 ,40)
 ctx.strokeStyle = 'white'
 ctx.strokeRect(0,0, 122, 42)
 const textCoordinates = ctx.getImageData(0,0, 122, 40);
