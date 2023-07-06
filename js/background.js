@@ -51,7 +51,7 @@ class Sketch{
                 background: "white",
                 wireframes: false,
                 showAngleIndicator: false,
-                devicePixelRatio:2,
+                PixelRatio:'auto',
             }
         });
         Render.run(this.render);
