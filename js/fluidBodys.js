@@ -1,5 +1,5 @@
 class fluidBodys{
-    constructor(x, y, r, n, engine){
+    constructor(x, y, r, n){
         this.cx = window.innerWidth * x;
         this.cy = window.innerHeight * y;
         this.radius = window.innerWidth * r;
@@ -8,13 +8,15 @@ class fluidBodys{
         this.vectorOfCircles = [];
         this.vectorOfAnchors = [];
         this.vectorOfLinks = [];
+        this.createCircles()
+        
     }
 
     defineFluidPos(){
         let points = []
-        
-        for(let i = 0; i < this.numberOfPoints; i++){
-            let theta = i * Math.PI/this.numberOfPoints/2
+        let number = this.numberOfPoints
+        for(let i = 0; i < number; i++){
+            let theta = i * Math.PI/number*2
             let x = this.cx + this.radius * Math.cos(theta);
             let y = this.cy + this.radius * Math.sin(theta);
             points.push({
@@ -28,7 +30,7 @@ class fluidBodys{
 
     createCircles(){
         this.vectorOfPosi = this.defineFluidPos()   
-        for(let c in this.fluidCirclePos1){
+        for(let c in this.vectorOfPosi){
             this.vectorOfCircles.push(
                 Bodies.circle(
                     this.vectorOfPosi[c].x,
@@ -65,7 +67,7 @@ class fluidBodys{
             )
         }
 
-        for(let i = 0; i < 40; i++){
+        for(let i = 0; i < this.numberOfPoints; i++){
             let next = this.vectorOfCircles[i+1]?this.vectorOfCircles[i+1]:this.vectorOfCircles[0];
             this.vectorOfLinks.push(
                 Constraint.create({
@@ -74,15 +76,13 @@ class fluidBodys{
                     stiffness: 1, 
                 })
             )
-            
-
         }
-        for(let i = 0; i < 40; i++){
-            this.fluidCirclesLinks1.push(
+        for(let i = 0; i < this.numberOfPoints; i++){
+            this.vectorOfLinks.push(
                 Constraint.create({
                     bodyA: this.vectorOfAnchors[i],
                     bodyB: this.vectorOfCircles[i],
-                    stiffness: 0.01,
+                    stiffness: 0.03,
                 })
             )
         }

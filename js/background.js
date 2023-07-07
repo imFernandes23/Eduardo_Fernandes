@@ -71,7 +71,7 @@ class Sketch{
 
     addObjects(){
     //mouse space
-        this.cursor = Bodies.circle(100, 100,50,{
+        this.cursor = Bodies.circle(-50, -50,50,{
         isStatic: true,
         stiffness: 1,
         restitution: 1,
@@ -83,18 +83,6 @@ class Sketch{
         }
         })
 
-        this.circle = Bodies.circle(100, 100,50,{
-            stiffness: 1,
-            restitution: 1,
-            collisionFilter: {
-                //mask: mouseCategory,
-                mask: cenarioCategory,
-                category: cenarioCategory,
-            }
-            })
-
-        
-        World.add(this.engine.world, this.circle)
         this.mouse = Mouse.create(this.render.canvas)
         World.add(this.engine.world, this.cursor)
 
@@ -122,77 +110,23 @@ class Sketch{
 
         World.add(this.engine.world, this.nameCircles)
 
-        //fluid Circle
-        this.fluidCirclePos1 = this.defineFluidCircle(this.centerCircle1.x, this.centerCircle1.y)
-        this.fluidCircles1 = []
-        this.fluidCirclesAnchor1 = []
-        
-        for(let c in this.fluidCirclePos1){
-            this.fluidCircles1.push(
-                Bodies.circle(
-                    this.fluidCirclePos1[c].x,
-                    this.fluidCirclePos1[c].y,
-                    5,{
-                        desity: 0.05,
-                        restitution: 0.1,
-                        render:{
-                            fillStyle: 'yellow'
-                        },collisionFilter:{
-                            mask: cenarioCategory,
-                            category: cenarioCategory
-                        }
-                    }
-                )
-                
-            )
-            this.fluidCirclesAnchor1.push(
-                Bodies.circle(
-                    this.fluidCirclePos1[c].x,
-                    this.fluidCirclePos1[c].y,
-                    5,{
-                        desity: 0,
-                        restitution: 0.1,
-                        isStatic: true,
-                        render:{
-                            fillStyle: 'yellow'
-                        },collisionFilter:{
-                            group: -1
-                        }
-                    }
-                )
-                
-            )
-        }
+        //fluid Circles
 
+        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,40)
+        World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
+        World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
+        World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
+        this.circleCenario2 = new fluidBodys(0.5,0.05,0.1,20)
+        World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
+        World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
+        World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.fluidCirclesLinks1 = []
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.075,15)
+        World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
+        World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
+        World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
-        for(let i = 0; i < 40; i++){
-            let next = this.fluidCircles1[i+1]?this.fluidCircles1[i+1]:this.fluidCircles1[0];
-            this.fluidCirclesLinks1.push(
-                Constraint.create({
-                    bodyA: this.fluidCircles1[i],
-                    bodyB: next,
-                    stiffness: 1, 
-                })
-            )
-            
-
-        }
-        for(let i = 0; i < 40; i++){
-            this.fluidCirclesLinks1.push(
-                Constraint.create({
-                    bodyA: this.fluidCirclesAnchor1[i],
-                    bodyB: this.fluidCircles1[i],
-                    stiffness: 0.01,
-                })
-            )
-        }
-
-        World.add(this.engine.world, this.fluidCircles1)
-        World.add(this.engine.world, this.fluidCirclesAnchor1)
-        World.add(this.engine.world, this.fluidCirclesLinks1)
         
     }
 
@@ -274,25 +208,9 @@ class Sketch{
     handleResize(){
         this.render.canvas.width = this.width;
         this.render.canvas.height = this.height;
-
-        //circle 1
-
-        this.centerCircle1 = {x: this.width * 0.9, y:this.height * 0.05}
-        this.fluidCirclePos1 = this.defineFluidCircle(this.centerCircle1.x, this.centerCircle1.y)
-        let distance = (360/40) * this.width*0.25 * Math.PI /180
-
-        for(let i in this.fluidCircles1){
-            Body.setPosition(this.fluidCircles1[i],{
-                x: this.fluidCirclePos1[i].x,
-                y: this.fluidCirclePos1[i].y
-            })
-            Body.setPosition(this.fluidCirclesAnchor1[i],{
-                x: this.fluidCirclePos1[i].x,
-                y: this.fluidCirclePos1[i].y
-            })
-            
-            this.fluidCirclesLinks1[i].length = distance
-        }
+        this.circleCenario1.handleResize(0.9,0.05,0.25)
+        this.circleCenario2.handleResize(0.5,0.05,0.1)
+        this.circleCenario3.handleResize(0.1,0.1,0.05)
         
     }
 
