@@ -23,7 +23,8 @@ class Sketch{
         this.width = window.innerWidth;
         this.height = window.innerHeight;
         this.margin = 3;
-        this.marginR = 0
+        this.marginR = 0;
+        this.centerCircle1 = {x: this.width * 0.9, y:this.height * 0.05}
         this.physics();
         this.initPaper();
         this.namePos();
@@ -49,7 +50,7 @@ class Sketch{
                 height: this.height,
                 showVelocity: false,
                 background: "white",
-                wireframes: false,
+                wireframes: true,
                 showAngleIndicator: false,
                 PixelRatio:'auto',
             }
@@ -59,6 +60,7 @@ class Sketch{
         // create runner
         this.runner = Runner.create();
         Runner.run(this.runner, this.engine);
+
     }
 
     mouseEvents(){
@@ -75,7 +77,7 @@ class Sketch{
         restitution: 1,
         collisionFilter: {
             //mask: mouseCategory,
-            category: nameCategory
+            category: nameCategory | cenarioCategory
         },render:{
             fillStyle: 'transparent'
         }
@@ -86,12 +88,13 @@ class Sketch{
             restitution: 1,
             collisionFilter: {
                 //mask: mouseCategory,
-                category: cenarioCategory
+                mask: cenarioCategory,
+                category: cenarioCategory,
             }
             })
 
         
-            World.add(this.engine.world, this.circle)
+        World.add(this.engine.world, this.circle)
         this.mouse = Mouse.create(this.render.canvas)
         World.add(this.engine.world, this.cursor)
 
@@ -118,6 +121,78 @@ class Sketch{
         }
 
         World.add(this.engine.world, this.nameCircles)
+
+        //fluid Circle
+        this.fluidCirclePos1 = this.defineFluidCircle(this.centerCircle1.x, this.centerCircle1.y)
+        this.fluidCircles1 = []
+        this.fluidCirclesAnchor1 = []
+        
+        for(let c in this.fluidCirclePos1){
+            this.fluidCircles1.push(
+                Bodies.circle(
+                    this.fluidCirclePos1[c].x,
+                    this.fluidCirclePos1[c].y,
+                    5,{
+                        desity: 0.05,
+                        restitution: 0.1,
+                        render:{
+                            fillStyle: 'yellow'
+                        },collisionFilter:{
+                            mask: cenarioCategory,
+                            category: cenarioCategory
+                        }
+                    }
+                )
+                
+            )
+            this.fluidCirclesAnchor1.push(
+                Bodies.circle(
+                    this.fluidCirclePos1[c].x,
+                    this.fluidCirclePos1[c].y,
+                    5,{
+                        desity: 0,
+                        restitution: 0.1,
+                        isStatic: true,
+                        render:{
+                            fillStyle: 'yellow'
+                        },collisionFilter:{
+                            group: -1
+                        }
+                    }
+                )
+                
+            )
+        }
+
+
+
+        this.fluidCirclesLinks1 = []
+
+        for(let i = 0; i < 40; i++){
+            let next = this.fluidCircles1[i+1]?this.fluidCircles1[i+1]:this.fluidCircles1[0];
+            this.fluidCirclesLinks1.push(
+                Constraint.create({
+                    bodyA: this.fluidCircles1[i],
+                    bodyB: next,
+                    stiffness: 1, 
+                })
+            )
+            
+
+        }
+        for(let i = 0; i < 40; i++){
+            this.fluidCirclesLinks1.push(
+                Constraint.create({
+                    bodyA: this.fluidCirclesAnchor1[i],
+                    bodyB: this.fluidCircles1[i],
+                    stiffness: 0.01,
+                })
+            )
+        }
+
+        World.add(this.engine.world, this.fluidCircles1)
+        World.add(this.engine.world, this.fluidCirclesAnchor1)
+        World.add(this.engine.world, this.fluidCirclesLinks1)
         
     }
 
@@ -173,7 +248,22 @@ class Sketch{
         }
     }
 
-    
+    defineFluidCircle(cx, cy){
+        let r = this.width  * 0.25;
+        let points = []
+
+        for(let i = 0; i < 40; i++){
+            let theta = i * Math.PI / 20;
+            let x = cx + r * Math.cos(theta);
+            let y = cy + r * Math.sin(theta);
+            points.push({
+                x: x,
+                y: y,
+            })
+        }
+
+        return points
+    }
 
     initPaper(){
 
@@ -184,6 +274,26 @@ class Sketch{
     handleResize(){
         this.render.canvas.width = this.width;
         this.render.canvas.height = this.height;
+
+        //circle 1
+
+        this.centerCircle1 = {x: this.width * 0.9, y:this.height * 0.05}
+        this.fluidCirclePos1 = this.defineFluidCircle(this.centerCircle1.x, this.centerCircle1.y)
+        let distance = (360/40) * this.width*0.25 * Math.PI /180
+
+        for(let i in this.fluidCircles1){
+            Body.setPosition(this.fluidCircles1[i],{
+                x: this.fluidCirclePos1[i].x,
+                y: this.fluidCirclePos1[i].y
+            })
+            Body.setPosition(this.fluidCirclesAnchor1[i],{
+                x: this.fluidCirclePos1[i].x,
+                y: this.fluidCirclePos1[i].y
+            })
+            
+            this.fluidCirclesLinks1[i].length = distance
+        }
+        
     }
 
     renderLoop(){
@@ -201,8 +311,8 @@ window.addEventListener('resize', function(){
     animation.height = window.innerHeight;
     animation.handleResize()
     animation.namePos()
+
 })
 
 
-console.log(animation.cursor)
 
