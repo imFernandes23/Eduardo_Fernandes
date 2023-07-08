@@ -12748,7 +12748,7 @@ var DomEvent = {
 					var options = (
 						el === document
 						&& (name === 'touchstart' || name === 'touchmove')
-					) ? { passive: false } : false;
+					) ? { passive: true } : { passive: true };
 					el.addEventListener(name, func, options);
 				}
 			}

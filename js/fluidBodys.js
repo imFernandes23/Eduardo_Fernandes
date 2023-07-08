@@ -1,5 +1,5 @@
 class fluidBodys{
-    constructor(x, y, r, n){
+    constructor(x, y, r, n, color){
         this.cx = window.innerWidth * x;
         this.cy = window.innerHeight * y;
         this.radius = window.innerWidth * r;
@@ -9,6 +9,8 @@ class fluidBodys{
         this.vectorOfAnchors = [];
         this.vectorOfLinks = [];
         this.createCircles()
+        this.color = color
+        this.fluidBody = new paper.Path();
         
     }
 
@@ -39,7 +41,7 @@ class fluidBodys{
                         desity: 0.05,
                         restitution: 0.1,
                         render:{
-                            fillStyle: 'yellow'
+                            fillStyle: 'transparent'
                         },collisionFilter:{
                             mask: cenarioCategory,
                             category: cenarioCategory
@@ -52,12 +54,12 @@ class fluidBodys{
                 Bodies.circle(
                     this.vectorOfPosi[c].x,
                     this.vectorOfPosi[c].y,
-                    5,{
+                    2,{
                         desity: 0,
                         restitution: 0.1,
                         isStatic: true,
                         render:{
-                            fillStyle: 'yellow'
+                            fillStyle: 'transparent'
                         },collisionFilter:{
                             group: -1
                         }
@@ -73,7 +75,10 @@ class fluidBodys{
                 Constraint.create({
                     bodyA: this.vectorOfCircles[i],
                     bodyB: next,
-                    stiffness: 1, 
+                    stiffness: 1,
+                    render: {
+                        visible: false,
+                    }
                 })
             )
         }
@@ -82,7 +87,10 @@ class fluidBodys{
                 Constraint.create({
                     bodyA: this.vectorOfAnchors[i],
                     bodyB: this.vectorOfCircles[i],
-                    stiffness: 0.03,
+                    stiffness: 0.05,
+                    render: {
+                        visible: false,
+                    }
                 })
             )
         }
@@ -106,6 +114,34 @@ class fluidBodys{
             })
             this.vectorOfLinks[i].length = distance;
         }
+
+    }
+
+    drawBodys(){
+        this.fluidBody.removeSegments()
+        this.fluidBody.moveTo(
+            this.vectorOfCircles[0].position.x,
+            this.vectorOfCircles[0].position.y
+        )
+
+
+        for(let i = 1; i < this.numberOfPoints; i++){
+            this.fluidBody.lineTo(
+                this.vectorOfCircles[i].position.x,
+                this.vectorOfCircles[i].position.y
+            )
+        }
+
+        this.fluidBody.closePath();
+
+        this.fluidBody.strokeColor = 'white';
+        this.fluidBody.strokeWidth = 2;
+        this.fluidBody.fillColor = this.color
+
+        this.fluidBody.smooth();
+
+        return this.fluidBody
+
     }
 
 }

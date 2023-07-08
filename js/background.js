@@ -49,8 +49,8 @@ class Sketch{
                 width: this.width,
                 height: this.height,
                 showVelocity: false,
-                background: "white",
-                wireframes: true,
+                background: "transparent",
+                wireframes: false,
                 showAngleIndicator: false,
                 PixelRatio:'auto',
             }
@@ -64,8 +64,8 @@ class Sketch{
     }
 
     mouseEvents(){
-        this.mouse.element.removeEventListener("mousewheel", this.mouse.mousewheel);
-        this.mouse.element.removeEventListener("DOMMouseScroll", this.mouse.mousewheel);
+        this.mouse.element.removeEventListener("mousewheel", this.mouse.mousewheel, { passive: true });
+        this.mouse.element.removeEventListener("DOMMouseScroll", this.mouse.mousewheel,{ passive: true });
         Body.setPosition(this.cursor, Vector.create(this.mouse.position.x, this.mouse.position.y))
     }
 
@@ -112,23 +112,28 @@ class Sketch{
 
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,40)
+        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, "#9551A6")
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
-        this.circleCenario2 = new fluidBodys(0.5,0.05,0.1,20)
+        
+        this.circleCenario2 = new fluidBodys(0.5,0.05,0.1,30, "#9551A6")
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.075,15)
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, "#9551A6")
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
-        
+
+
+
     }
+
+
 
     namePos(){
         // relative position
@@ -182,35 +187,25 @@ class Sketch{
         }
     }
 
-    defineFluidCircle(cx, cy){
-        let r = this.width  * 0.25;
-        let points = []
-
-        for(let i = 0; i < 40; i++){
-            let theta = i * Math.PI / 20;
-            let x = cx + r * Math.cos(theta);
-            let y = cy + r * Math.sin(theta);
-            points.push({
-                x: x,
-                y: y,
-            })
-        }
-
-        return points
-    }
 
     initPaper(){
-
+        this.paperCanvas = document.getElementById('paper-background')
+        this.project = new paper.Project(this.paperCanvas)
     }
 
 
 
     handleResize(){
+        this.width = window.innerWidth;
+        this.height = window.innerHeight
         this.render.canvas.width = this.width;
         this.render.canvas.height = this.height;
-        this.circleCenario1.handleResize(0.9,0.05,0.25)
-        this.circleCenario2.handleResize(0.5,0.05,0.1)
-        this.circleCenario3.handleResize(0.1,0.1,0.05)
+        this.paperCanvas.width = this.width;
+        this.paperCanvas.height = this.height;
+        this.project.view.viewSize = new paper.Size(this.width,this.height)
+        this.circleCenario1.handleResize(0.9,0,0.25)
+        this.circleCenario2.handleResize(0.5,0.05,0.1,)
+        this.circleCenario3.handleResize(0.1,0.1,0.05,)
         
     }
 
@@ -218,6 +213,9 @@ class Sketch{
         this.time += 0.05;
         this.mouseEvents()
         this.nameEfect();
+        this.project.addLayer(this.circleCenario1.drawBodys())
+        this.project.addLayer(this.circleCenario2.drawBodys())
+        this.project.addLayer(this.circleCenario3.drawBodys())
         window.requestAnimationFrame(this.renderLoop.bind(this))
     }
 }
@@ -225,12 +223,9 @@ class Sketch{
 let animation = new Sketch();
 
 window.addEventListener('resize', function(){
-    animation.width = window.innerWidth;
-    animation.height = window.innerHeight;
     animation.handleResize()
     animation.namePos()
-
-})
+}, { passive: true })
 
 
 
