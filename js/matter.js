@@ -5803,11 +5803,11 @@ var Common = __webpack_require__(0);
         element.addEventListener('mousedown', mouse.mousedown);
         element.addEventListener('mouseup', mouse.mouseup);
         
-        element.addEventListener('mousewheel', mouse.mousewheel,{ passive: true });
+        element.addEventListener('mousewheel', mouse.mousewheel);
         element.addEventListener('DOMMouseScroll', mouse.mousewheel);
 
-        element.addEventListener('touchmove', mouse.mousemove,{ passive: true });
-        element.addEventListener('touchstart', mouse.mousedown,{ passive: true });
+        element.addEventListener('touchmove', mouse.mousemove);
+        element.addEventListener('touchstart', mouse.mousedown);
         element.addEventListener('touchend', mouse.mouseup);
     };
 

@@ -44,7 +44,8 @@ class fluidBodys{
                             fillStyle: 'transparent'
                         },collisionFilter:{
                             mask: cenarioCategory,
-                            category: cenarioCategory
+                            category: cenarioCategory,
+                            group: -1
                         }
                     }
                 )
