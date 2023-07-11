@@ -203,9 +203,9 @@ class Sketch{
         this.paperCanvas.width = this.width;
         this.paperCanvas.height = this.height;
         this.project.view.viewSize = new paper.Size(this.width,this.height)
-        this.circleCenario1.handleResize(0.9,0,0.25)
-        this.circleCenario2.handleResize(0.5,0.05,0.1,)
-        this.circleCenario3.handleResize(0.1,0.1,0.05,)
+        this.circleCenario1.handleResize(0.9,0.05,0.25)
+        this.circleCenario2.handleResize(0.5,0.1,0.1,)
+        this.circleCenario3.handleResize(0.1,0.15,0.05,)
         
     }
 

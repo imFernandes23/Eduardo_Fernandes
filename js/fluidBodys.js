@@ -98,8 +98,8 @@ class fluidBodys{
     }
 
     handleResize(x, y, r){
-        this.cx = window.innerWidth * x;
-        this.cy = window.innerHeight * y;
+        this.cx = window.innerWidth * x ;
+        this.cy = window.innerHeight * y ;
         this.radius = window.innerWidth * r;
         this.vectorOfPosi = this.defineFluidPos()
         let distance = (360/this.numberOfPoints) * this.radius * Math.PI/180
