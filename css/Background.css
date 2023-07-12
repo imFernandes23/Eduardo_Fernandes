@@ -5,7 +5,7 @@
 }
 
 #paper-background{
-background-color: rgb(255, 249, 249);
+background-color: white;
 pointer-events: none;
 position: absolute;
 top: 0;

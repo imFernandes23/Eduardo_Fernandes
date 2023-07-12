@@ -24,7 +24,6 @@ class Sketch{
         this.height = window.innerHeight;
         this.margin = 3;
         this.marginR = 0;
-        this.centerCircle1 = {x: this.width * 0.9, y:this.height * 0.05}
         this.physics();
         this.initPaper();
         this.namePos();
@@ -50,9 +49,9 @@ class Sketch{
                 height: this.height,
                 showVelocity: false,
                 background: "transparent",
-                wireframes: true,
+                wireframes: false,
                 showAngleIndicator: false,
-                PixelRatio:'auto',
+                PixelRatio: 4,
             }
         });
         Render.run(this.render);
@@ -108,7 +107,7 @@ class Sketch{
             
         }
 
-        //World.add(this.engine.world, this.nameCircles)
+        
 
         //fluid Circles
 
@@ -123,18 +122,18 @@ class Sketch{
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.15,0.05,15, "#9551A6")
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, "#9551A6")
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.5,0.5,0.5,0,5,"#9551A6")
+        this.rectangleCenario1 = new rectangleBodys(0.25,1.17,0.5,0.12,15,"#9551A6")
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
 
-
+        World.add(this.engine.world, this.nameCircles)
     }
 
 
@@ -142,11 +141,11 @@ class Sketch{
     namePos(){
         // relative position
         let startW = this.width * 0.1;
-        let startH = this.height * 0.25;
+        let startH = this.height * 0.2;
         
         this.marginR = this.width / 150
-        if(this.marginR > 5){
-            this.margin = 5
+        if(this.marginR > 6){
+            this.margin = 6
         }else{
             this.margin = this.marginR
         }
@@ -209,7 +208,8 @@ class Sketch{
         this.project.view.viewSize = new paper.Size(this.width,this.height)
         this.circleCenario1.handleResize(0.9,0.05,0.25)
         this.circleCenario2.handleResize(0.5,0.1,0.1,)
-        this.circleCenario3.handleResize(0.1,0.15,0.05,)
+        this.circleCenario3.handleResize(0.1,0.1,0.05,)
+        this.rectangleCenario1.handleResize(0.25,1.17,0.5)
         
     }
 
@@ -220,6 +220,7 @@ class Sketch{
         this.project.addLayer(this.circleCenario1.drawBodys())
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
+        this.rectangleCenario1.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         window.requestAnimationFrame(this.renderLoop.bind(this))
     }
 }
