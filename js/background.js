@@ -50,7 +50,7 @@ class Sketch{
                 height: this.height,
                 showVelocity: false,
                 background: "transparent",
-                wireframes: false,
+                wireframes: true,
                 showAngleIndicator: false,
                 PixelRatio:'auto',
             }
@@ -108,26 +108,30 @@ class Sketch{
             
         }
 
-        World.add(this.engine.world, this.nameCircles)
+        //World.add(this.engine.world, this.nameCircles)
 
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, "#9551A6")
+        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,50, "#9551A6")
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
         
-        this.circleCenario2 = new fluidBodys(0.5,0.05,0.1,30, "#9551A6")
+        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, "#9551A6")
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, "#9551A6")
+        this.circleCenario3 = new fluidBodys(0.1,0.15,0.05,15, "#9551A6")
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
+        //rectagle bodys
+
+        this.rectangleCenario1 = new rectangleBodys(0.5,0.5,0.5,0,5,"#9551A6")
+        World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
 
 
