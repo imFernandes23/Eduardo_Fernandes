@@ -22,14 +22,10 @@ class Sketch{
         this.time = 0;
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.margin = 3;
-        this.marginR = 0;
         this.physics();
         this.initPaper();
-        this.namePos();
         this.addObjects();
-        this.renderLoop();
-        
+        this.renderLoop();  
     }
 
     physics(){
@@ -85,33 +81,9 @@ class Sketch{
         this.mouse = Mouse.create(this.render.canvas)
         World.add(this.engine.world, this.cursor)
 
-        //name title
-        this.nameCircles = []
-        for(let c in this.nameData){
-            this.nameCircles.push(
-                Bodies.circle(
-                    this.nameData[c].x,
-                    this.nameData[c].y, 
-                    1.3,{
-                        density: 0.005,
-                        restitution: 0,
-                        render:{
-                            fillStyle: 'black'
-                        },collisionFilter: {
-                            group: -1,
-                            mask: nameCategory
-                        }
-                    }     
-                )
-            )
-            
-        }
-
-        
-
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,50, "#9551A6")
+        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, "#9551A6")
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
@@ -129,65 +101,15 @@ class Sketch{
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.25,1.17,0.5,0.12,15,"#9551A6")
+        this.rectangleCenario1 = new rectangleBodys(0.25,1.17,0.5,0.12,15,"#D09BD1")
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
-
-
-        World.add(this.engine.world, this.nameCircles)
-    }
-
-
-
-    namePos(){
-        // relative position
-        let startW = this.width * 0.1;
-        let startH = this.height * 0.2;
         
-        this.marginR = this.width / 150
-        if(this.marginR > 6){
-            this.margin = 6
-        }else{
-            this.margin = this.marginR
-        }
+
+        //name title
+        this.nameTitle = new nameBodys(0.075, 0.2)
+        World.add(this.engine.world, this.nameTitle.vectorOfBodys)
 
 
-        this.nameData = [];
-        for(let line in nameData){
-
-            for(let col in nameData[line]){
-
-                this.nameData.push({
-                    x: nameData[line][col].x * this.margin + startW,
-                    y: nameData[line][col].y * this.margin + startH,
-                })
-
-            }
-            
-        }
-    }
-
-    nameEfect(){
-        for(let i in this.nameCircles){
-            let dx = this.nameData[i].x - this.cursor.position.x
-            let dy = this.nameData[i].y - this.cursor.position.y
-            let dist = Math.sqrt(dx*dx + dy*dy) 
-            
-            dx = this.nameData[i].x - this.nameCircles[i].position.x;
-            dy = this.nameData[i].y - this.nameCircles[i].position.y;
-
-            let posX = this.nameCircles[i].position.x
-            let posY = this.nameCircles[i].position.y
-
-
-            let dist2 = Math.sqrt(dx*dx + dy*dy)
-            if( dist > this.cursor.circleRadius){
-                Body.setPosition(this.nameCircles[i],{
-                    x: posX += dx/10,
-                    y: posY += dy/10
-                })
-            }
-            
-        }
     }
 
 
@@ -210,17 +132,19 @@ class Sketch{
         this.circleCenario2.handleResize(0.5,0.1,0.1,)
         this.circleCenario3.handleResize(0.1,0.1,0.05,)
         this.rectangleCenario1.handleResize(0.25,1.17,0.5)
+        this.nameTitle.handleResize(0.075,0.2)
+        
         
     }
 
     renderLoop(){
         this.time += 0.05;
         this.mouseEvents()
-        this.nameEfect();
         this.project.addLayer(this.circleCenario1.drawBodys())
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
         this.rectangleCenario1.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
+        this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
         window.requestAnimationFrame(this.renderLoop.bind(this))
     }
 }
