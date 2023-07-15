@@ -5,6 +5,13 @@
     overflow-y: hidden;
 }
 
+@font-face{
+    font-family: bauhau93;
+    src: url('./BAUHS93.ttf') format('truetype');
+    font-weight: normal;
+    font-size: normal;
+}
+
 #paper-background{
 background-color: white;
 pointer-events: none;
@@ -14,5 +21,65 @@ left: 0;
 z-index: -1;
 width: 100vw;
 height: 100vh;
-
 }
+
+
+h1{
+    position: absolute;
+    display: block;
+    font-family: bauhau93;
+    font-size: 3em;
+    z-index: 1000;
+    top: 47vh;
+    left: 15vw;
+}
+
+.link-grade{
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.link-box{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    font-size: 40px;
+    text-decoration: none;
+    color: white;
+    height: 80px;
+    background-color: #6f1dc2;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.link-box:hover{
+    transform: translate(0, -10px);
+}
+
+
+@media screen and (orientation: portrait) {
+    h1{
+        top: 43vh;
+        left: 10vw;
+        margin-left: auto;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    h1{
+        top: 40vh;
+    }
+
+    .link-grade{
+        bottom: 25vh;
+    }
+  }
