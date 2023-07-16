@@ -22,6 +22,10 @@ class Sketch{
         this.time = 0;
         this.width = window.innerWidth;
         this.height = window.innerHeight;
+        this.mouseLocal = {
+            x: 0,
+            y: 0
+        }
         this.physics();
         this.initPaper();
         this.addObjects();
@@ -58,10 +62,16 @@ class Sketch{
 
     }
 
-    mouseEvents(){
-        this.mouse.element.removeEventListener("mousewheel", this.mouse.mousewheel, { passive: true });
-        this.mouse.element.removeEventListener("DOMMouseScroll", this.mouse.mousewheel,{ passive: true });
-        Body.setPosition(this.cursor, Vector.create(this.mouse.position.x, this.mouse.position.y))
+    mouseMove(x,y){
+        this.mouseLocal = {
+            x: x,
+            y: y
+        }
+
+        Body.setPosition(this.cursor, {
+            x: this.mouseLocal.x,
+            y: this.mouseLocal.y
+        })
     }
 
     addObjects(){
@@ -103,9 +113,6 @@ class Sketch{
 
         this.rectangleCenario1 = new rectangleBodys(0.2,1.15,0.5,0.12,15,"#8341c4",450)
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
-        
-
-        
 
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)
@@ -141,7 +148,6 @@ class Sketch{
 
     renderLoop(){
         this.time += 0.05;
-        this.mouseEvents()
         this.project.addLayer(this.circleCenario1.drawBodys())
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
@@ -155,8 +161,11 @@ let animation = new Sketch();
 
 window.addEventListener('resize', function(){
     animation.handleResize()
-    animation.namePos()
 }, { passive: true })
+
+window.addEventListener('mousemove', function(e){
+    animation.mouseMove(e.clientX, e.clientY)
+})
 
 
 
