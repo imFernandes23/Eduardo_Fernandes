@@ -167,5 +167,9 @@ window.addEventListener('mousemove', function(e){
     animation.mouseMove(e.clientX, e.clientY)
 })
 
+window.addEventListener('touchmove', function(e){
+    animation.mouseMove(e.touches[0].clientX, e.touches[0].clientY)
+})
+
 
 
