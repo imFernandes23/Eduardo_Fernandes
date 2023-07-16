@@ -17,15 +17,20 @@ var wallsCategory = 0x0001,
     cenarioCategory = 0x0004,
     mouseCategory = 0x0008;
 
+var scrollPage = document.getElementById("scroll-page")
+
+var numberOfPages = 2
+var scrollValue = 0;
+var mouseLocal = {
+    x: 0,
+    y: 0
+}
+
 class Sketch{
     constructor(){
         this.time = 0;
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.mouseLocal = {
-            x: 0,
-            y: 0
-        }
         this.physics();
         this.initPaper();
         this.addObjects();
@@ -46,7 +51,7 @@ class Sketch{
             engine: this.engine,
             options: {
                 width: this.width,
-                height: this.height,
+                height: this.height * numberOfPages,
                 showVelocity: false,
                 background: "transparent",
                 wireframes: false,
@@ -62,15 +67,10 @@ class Sketch{
 
     }
 
-    mouseMove(x,y){
-        this.mouseLocal = {
-            x: x,
-            y: y
-        }
-
+    mouseMove(x,y,scroll){
         Body.setPosition(this.cursor, {
-            x: this.mouseLocal.x,
-            y: this.mouseLocal.y
+            x: x,
+            y: y + scroll
         })
     }
 
@@ -133,10 +133,10 @@ class Sketch{
         this.width = window.innerWidth;
         this.height = window.innerHeight
         this.render.canvas.width = this.width;
-        this.render.canvas.height = this.height;
+        this.render.canvas.height = this.height * numberOfPages;
         this.paperCanvas.width = this.width;
-        this.paperCanvas.height = this.height;
-        this.project.view.viewSize = new paper.Size(this.width,this.height)
+        this.paperCanvas.height = this.height * numberOfPages;
+        this.project.view.viewSize = new paper.Size(this.width,this.height * numberOfPages)
         this.circleCenario1.handleResize(0.9,0.05,0.25)
         this.circleCenario2.handleResize(0.5,0.1,0.1,)
         this.circleCenario3.handleResize(0.1,0.1,0.05,)
@@ -164,12 +164,26 @@ window.addEventListener('resize', function(){
 }, { passive: true })
 
 window.addEventListener('mousemove', function(e){
-    animation.mouseMove(e.clientX, e.clientY)
+    mouseLocal.x = e.clientX
+    mouseLocal.y = e.clientY
+    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+
+})
+
+window.addEventListener('scroll', function(e){
+    let rect = scrollPage.getBoundingClientRect()
+    scrollValue = Math.max(0, -rect.top)
+    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    console.log(scrollValue)
+
 })
 
 window.addEventListener('touchmove', function(e){
-    animation.mouseMove(e.touches[0].clientX, e.touches[0].clientY)
+    mouseLocal.x = e.touches[0].clientX
+    mouseLocal.y = e.touches[0].clientY
+    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
 })
+
 
 
 

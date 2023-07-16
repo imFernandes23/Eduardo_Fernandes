@@ -106,7 +106,7 @@ class nameBodys{
 
             let dist2 = Math.sqrt(dx*dx + dy*dy)
 
-            if( dist > r){
+            if( dist > r ){
                 Body.setPosition(this.vectorOfBodys[i],{
                     x: posX += dx/10,
                     y: posY += dy/10
