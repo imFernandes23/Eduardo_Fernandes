@@ -93,28 +93,28 @@ class Sketch{
 
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, "#6f1dc2")
+        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, "#9370DB")
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
         
-        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, "#6f1dc2")
+        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, "#9370DB")
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, "#6f1dc2")
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, "#9370DB")
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,"#8341c4",450)
+        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,"#9370DB",450)
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
-        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,"#8341c4",250)
+        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,"#9370DB",250)
         World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)
