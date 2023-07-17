@@ -30,9 +30,20 @@ height: 200vh;
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100%;
-    height: 200%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
+
+.page{
+    width: calc(100vw - 20px);
+    height: calc((100vh - 20px));
+}
+
+
 
 h1{
     position: absolute;
@@ -40,7 +51,7 @@ h1{
     font-family: bauhau93;
     font-size: 3em;
     z-index: 1000;
-    top: 47vh;
+    top: 45vh;
     left: 15vw;
 }
 
@@ -50,7 +61,7 @@ h1{
     align-items: center;
     position: absolute;
     right: 10px;
-    top: calc(100vh - 120px);
+    top: calc(100vh - 100px);
     display: flex;
     gap: 10px;
 }
@@ -78,7 +89,7 @@ h1{
 
 @media screen and (orientation: portrait) {
     h1{
-        top: 43vh;
+        top: 42vh;
         left: 10vw;
         margin-left: auto;
     }

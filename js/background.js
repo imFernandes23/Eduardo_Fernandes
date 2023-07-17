@@ -111,9 +111,11 @@ class Sketch{
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.2,1.15,0.5,0.12,15,"#8341c4",450)
+        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,"#8341c4",450)
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
+        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,"#8341c4",250)
+        World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)
         World.add(this.engine.world, this.nameTitle.vectorOfBodys)
@@ -140,7 +142,8 @@ class Sketch{
         this.circleCenario1.handleResize(0.9,0.05,0.25)
         this.circleCenario2.handleResize(0.5,0.1,0.1,)
         this.circleCenario3.handleResize(0.1,0.1,0.05,)
-        this.rectangleCenario1.handleResize(0.2,1.15,0.5)
+        this.rectangleCenario1.handleResize(0.2,1,0.4)
+        this.rectangleCenario2.handleResize(0.85,2,0.2,)
         this.nameTitle.handleResize(0.075,0.2)
         
         
@@ -152,6 +155,7 @@ class Sketch{
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
         this.rectangleCenario1.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
+        this.rectangleCenario2.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
         window.requestAnimationFrame(this.renderLoop.bind(this))
     }
@@ -184,6 +188,12 @@ window.addEventListener('touchmove', function(e){
     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
 })
 
+function defineScroll(){
+    let rect = scrollPage.getBoundingClientRect()
+    scrollValue = Math.max(0, -rect.top)
+}
+
+defineScroll()
 
 
 

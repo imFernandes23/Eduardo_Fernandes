@@ -2,11 +2,7 @@ class rectangleBodys{
     constructor(x, y, size, angle, n, color, min){
         this.cx = window.innerWidth * x;
         this.minSize = min;
-        if(window.innerHeight > window.innerWidth){
-            this.cy = window.innerHeight * Math.round(y/1)
-        }else{
-            this.cy = window.innerHeight * y;
-        }
+        this.cy = window.innerHeight * y;
         if(window.innerWidth * size < this.minSize){
             this.size = this.minSize;
         }else{
@@ -88,11 +84,7 @@ class rectangleBodys{
 
     handleResize(x, y, size){
         this.cx = window.innerWidth * x;
-        if(window.innerHeight > window.innerWidth){
-            this.cy = window.innerHeight * Math.round(y/1)
-        }else{
-            this.cy = window.innerHeight * y;
-        }
+        this.cy = window.innerHeight * y;
         if(window.innerWidth * size < this.minSize){
             this.size = this.minSize
         }else{
