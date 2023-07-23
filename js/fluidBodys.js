@@ -135,7 +135,7 @@ class fluidBodys{
 
         this.fluidBody.closePath();
 
-        this.fluidBody.strokeColor = 'white';
+        this.fluidBody.strokeColor = this.color;
         this.fluidBody.strokeWidth = 2;
         this.fluidBody.fillColor = this.color
 

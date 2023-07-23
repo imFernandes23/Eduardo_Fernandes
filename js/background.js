@@ -25,6 +25,7 @@ var mouseLocal = {
     x: 0,
     y: 0
 }
+var color = '#885DD7'
 
 class Sketch{
     constructor(){
@@ -34,7 +35,7 @@ class Sketch{
         this.physics();
         this.initPaper();
         this.addObjects();
-        this.renderLoop();  
+        this.renderLoop();
     }
 
     physics(){
@@ -76,7 +77,7 @@ class Sketch{
 
     addObjects(){
     //mouse space
-        this.cursor = Bodies.circle(-50, -50,50,{
+        this.cursor = Bodies.circle(-50, -50,70,{
         isStatic: true,
         stiffness: 1,
         restitution: 1,
@@ -92,29 +93,30 @@ class Sketch{
         World.add(this.engine.world, this.cursor)
 
         //fluid Circles
+        console.log(color)
 
-        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, "#9370DB")
+        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, color)
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
         
-        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, "#9370DB")
+        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, color)
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, "#9370DB")
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, color)
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,"#9370DB",450)
+        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,color,450)
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
-        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,"#9370DB",250)
+        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,color,250)
         World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)

@@ -73,7 +73,7 @@ class rectangleBodys{
                     this.circleRadius,{
                         isStatic: true,
                         render: {
-                            fillStyle: "white"
+                            fillStyle: "#1a1a1a"
                         }
                     }
                 )

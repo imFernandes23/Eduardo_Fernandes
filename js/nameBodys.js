@@ -2,13 +2,13 @@ const canvasName = document.getElementById('paper-background');
 const ctx = canvasName.getContext('2d');
 
 ctx.fillStyle = 'white'
-ctx.font = 'italic bold 25px serif' ;
+ctx.font = '25px bauhau93 ' ;
 ctx.fillText("Hello, I'm", 0, 20)
-ctx.font = 'italic bold 25px serif';
+ctx.font = 'bauhau93 25px';
 ctx.fillText('Eduardo', 5 ,40)
 ctx.strokeStyle = 'white'
 ctx.strokeRect(0,0, 122, 42)
-const textCoordinates = ctx.getImageData(0,0, 105, 40);
+const textCoordinates = ctx.getImageData(0,0, 106, 40);
 
 var nameData = []
 
@@ -77,12 +77,13 @@ class nameBodys{
                     this.vectorOfPos[c].x,
                     this.vectorOfPos[c].y, 
                     this.radius,{
-                        density: 0.005,
-                        restitution: 0,
+                        density: 0.8,
+                        friction: 0,
+                        restitution: 0.8,
                         render:{
-                            fillStyle: 'black'
+                            fillStyle: 'white'
                         },collisionFilter: {
-                            group: -1,
+                            // group: -1,
                             mask: nameCategory
                         }
                     }     
@@ -106,7 +107,7 @@ class nameBodys{
 
             let dist2 = Math.sqrt(dx*dx + dy*dy)
 
-            if( dist > r ){
+            if( dist > r * 3.5 ){
                 Body.setPosition(this.vectorOfBodys[i],{
                     x: posX += dx/10,
                     y: posY += dy/10
