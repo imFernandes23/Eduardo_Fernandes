@@ -14,17 +14,16 @@
 }
 
 #paper-background{
-background-color: white;
+background-color: #f0f2f5;
 pointer-events: none;
 position: absolute;
 top: 0;
 left: 0;
 z-index: -1;
 width: 100vw;
-height: 200vh;
-
+height: 400vh;
+overflow-x: hidden;
 }
-
 
 #scroll-page{
     position: absolute;
@@ -34,7 +33,7 @@ height: 200vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
 }
 
@@ -43,69 +42,7 @@ height: 200vh;
     height: calc((100vh - 20px));
 }
 
-
-
-h1{
-    position: absolute;
-    display: block;
-    font-family: bauhau93;
-    font-size: 3em;
-    z-index: 1000;
-    top: 45vh;
-    left: 15vw;
-}
-
-.link-grade{
-    height: 100px;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 10px;
-    top: calc(100vh - 100px);
-    display: flex;
-    gap: 10px;
-}
-
-.link-box{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    font-size: 40px;
-    text-decoration: none;
-    color: white;
-    height: 80px;
-    background-color: #9370DB;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-.link-box:hover{
-    transform: translate(0, -10px);
-}
-
-
-
-@media screen and (orientation: portrait) {
-    h1{
-        top: 42vh;
-        left: 10vw;
-        margin-left: auto;
-    }
-  }
-
-  @media screen and (max-width: 520px) {
-    h1{
-        top: 40vh;
-    }
-
-    .link-grade{
-        top: 60vh;
-    }
-  }
-
-  ::-webkit-scrollbar{
+::-webkit-scrollbar{
     width: 6px;
 }
 

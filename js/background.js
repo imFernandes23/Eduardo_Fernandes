@@ -19,7 +19,7 @@ var wallsCategory = 0x0001,
 
 var scrollPage = document.getElementById("scroll-page")
 
-var numberOfPages = 2
+var numberOfPages = 4
 var scrollValue = 0;
 var mouseLocal = {
     x: 0,
@@ -178,7 +178,6 @@ window.addEventListener('scroll', function(e){
     let rect = scrollPage.getBoundingClientRect()
     scrollValue = Math.max(0, -rect.top)
     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-    console.log(scrollValue)
 
 })
 
