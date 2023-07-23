@@ -29,6 +29,11 @@ height: 400vh;
 overflow-x: hidden;
 }
 
+#matter-background{
+    width: 100vw;
+    height: 400vh;
+    overflow: hidden;
+}
 #scroll-page{
     position: absolute;
     top: 0px;
