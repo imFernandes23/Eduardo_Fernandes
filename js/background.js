@@ -18,6 +18,7 @@ var wallsCategory = 0x0001,
     mouseCategory = 0x0008;
 
 var scrollPage = document.getElementById("scroll-page")
+var mainPage = document.getElementById("main-page")
 
 var numberOfPages = 4
 var scrollValue = 0;
@@ -176,25 +177,25 @@ window.addEventListener('mousemove', function(e){
 
 })
 
-window.addEventListener('scroll', function(e){
-    let rect = scrollPage.getBoundingClientRect()
-    scrollValue = Math.max(0, -rect.top)
-    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-
-})
-
 window.addEventListener('touchmove', function(e){
     mouseLocal.x = e.touches[0].clientX
     mouseLocal.y = e.touches[0].clientY
     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
 })
 
-function defineScroll(){
-    let rect = scrollPage.getBoundingClientRect()
+scrollPage.addEventListener("scroll", function(e){
+    let rect = mainPage.getBoundingClientRect()
     scrollValue = Math.max(0, -rect.top)
-}
+    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    console.log(-rect.top)
+})
 
-defineScroll()
+// function defineScroll(){
+//     let rect = scrollPage.getBoundingClientRect()
+//     scrollValue = Math.max(0, -rect.top)
+// }
+
+// defineScroll()
 
 
 
