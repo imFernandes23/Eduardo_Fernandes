@@ -59,7 +59,7 @@ class Sketch{
                 background: "transparent",
                 wireframes: false,
                 showAngleIndicator: false,
-                PixelRatio: 4,
+                PixelRatio: 2,
             }
         });
         Render.run(this.render);
