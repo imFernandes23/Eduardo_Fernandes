@@ -1,16 +1,16 @@
+@font-face{
+    font-family: bauhau93;
+    src: url('./BAUHS93.ttf') format('truetype');
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-    
-    
 }
 
-@font-face{
-    font-family: bauhau93;
-    src: url('./BAUHS93.ttf') format('truetype');
-}
+
 
 :root{
     --mainColor1: #885DD7;
@@ -23,6 +23,14 @@ body,html{
     height: 100vh;
     overflow: hidden;
 }
+
+#name-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -3;
+}
+
 #paper-background{
 background-color: var(--mainColor2);
 pointer-events: none;
@@ -44,6 +52,8 @@ height: 400vh;
     left: 0;;
     z-index: -1;
 }
+
+
 
 
 #scroll-page{

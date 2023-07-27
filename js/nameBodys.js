@@ -1,4 +1,4 @@
-const canvasName = document.getElementById('paper-background');
+const canvasName = document.getElementById('name-bg');
 const ctx = canvasName.getContext('2d');
 
 ctx.fillStyle = 'white'

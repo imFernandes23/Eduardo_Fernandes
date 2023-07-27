@@ -26,7 +26,8 @@ var mouseLocal = {
     x: 0,
     y: 0
 }
-var color = '#885DD7'
+var color1 = '#885DD7'
+var color2 = '#1a1a1a'
 
 class Sketch{
     constructor(){
@@ -94,30 +95,29 @@ class Sketch{
         World.add(this.engine.world, this.cursor)
 
         //fluid Circles
-        console.log(color)
 
-        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, color)
+        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, color1)
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
         
-        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, color)
+        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, color1)
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, color)
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, color1)
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,color,450)
+        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,color1,450)
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
-        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,color,250)
+        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,color1,250)
         World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)
@@ -164,36 +164,42 @@ class Sketch{
     }
 }
 
-let animation = new Sketch();
+window.onload = function(){
+    let animation = new Sketch();
+    
+    window.addEventListener('resize', function(){
+        animation.handleResize()
+    }, { passive: true })
+    
+    window.addEventListener('mousemove', function(e){
+        mouseLocal.x = e.clientX
+        mouseLocal.y = e.clientY
+        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    
+    })
+    
+    window.addEventListener('touchmove', function(e){
+        mouseLocal.x = e.touches[0].clientX
+        mouseLocal.y = e.touches[0].clientY
+        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    })
+    
+    scrollPage.addEventListener("scroll", function(e){
+        let rect = mainPage.getBoundingClientRect()
+        scrollValue = Math.max(0, -rect.top)
+        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    })
+    
+    function defineScroll(){
+        let rect = scrollPage.getBoundingClientRect()
+        scrollValue = Math.max(0, -rect.top)
+    }
 
-window.addEventListener('resize', function(){
-    animation.handleResize()
-}, { passive: true })
+}
 
-window.addEventListener('mousemove', function(e){
-    mouseLocal.x = e.clientX
-    mouseLocal.y = e.clientY
-    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
 
-})
 
-window.addEventListener('touchmove', function(e){
-    mouseLocal.x = e.touches[0].clientX
-    mouseLocal.y = e.touches[0].clientY
-    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-})
 
-scrollPage.addEventListener("scroll", function(e){
-    let rect = mainPage.getBoundingClientRect()
-    scrollValue = Math.max(0, -rect.top)
-    animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-    console.log(-rect.top)
-})
-
-// function defineScroll(){
-//     let rect = scrollPage.getBoundingClientRect()
-//     scrollValue = Math.max(0, -rect.top)
-// }
 
 // defineScroll()
 
