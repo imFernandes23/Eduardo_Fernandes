@@ -96,18 +96,18 @@ class Sketch{
 
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, color1)
+        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, color1, color1)
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
         
-        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, color1)
+        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, color1, color1)
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, color1)
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, color1, color1)
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
@@ -119,6 +119,8 @@ class Sketch{
 
         this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,color1,250)
         World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
+
+        
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)
         World.add(this.engine.world, this.nameTitle.vectorOfBodys)

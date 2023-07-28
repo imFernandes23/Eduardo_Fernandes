@@ -1,5 +1,5 @@
 class fluidBodys{
-    constructor(x, y, r, n, color){
+    constructor(x, y, r, n, color, border){
         this.cx = window.innerWidth * x;
         this.cy = window.innerHeight * y;
         this.radius = window.innerWidth * r;
@@ -9,7 +9,8 @@ class fluidBodys{
         this.vectorOfAnchors = [];
         this.vectorOfLinks = [];
         this.createCircles()
-        this.color = color
+        this.color = color;
+        this.border = border;
         this.fluidBody = new paper.Path();
         
     }
@@ -135,7 +136,7 @@ class fluidBodys{
 
         this.fluidBody.closePath();
 
-        this.fluidBody.strokeColor = this.color;
+        this.fluidBody.strokeColor = this.border;
         this.fluidBody.strokeWidth = 2;
         this.fluidBody.fillColor = this.color
 
