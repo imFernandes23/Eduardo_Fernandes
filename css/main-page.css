@@ -3,7 +3,7 @@ h1{
     position: absolute;
     display: block;
     font-family: bauhau93;
-    font-size: 3em;
+    font-size: max(2.7vw, 40px);
     color: white;
     z-index: 1000;
     top: 45vh;
@@ -27,6 +27,7 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     width: 60px;
     font-size: 40px;
     text-decoration: none;
@@ -64,6 +65,7 @@ h1{
 
 .link-box:hover{
     transform: translate(0, -10px);
+    color: white;
 }
 
 

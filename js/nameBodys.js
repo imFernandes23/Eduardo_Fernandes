@@ -8,6 +8,7 @@ ctx.font = 'bauhau93 25px';
 ctx.fillText('Eduardo', 5 ,40)
 ctx.strokeStyle = 'white'
 ctx.strokeRect(0,0, 122, 42)
+
 const textCoordinates = ctx.getImageData(0,0, 106, 40);
 
 var nameData = []
@@ -29,6 +30,7 @@ for( let y = 0, y2 = textCoordinates.height; y < y2; y++){
 
 }
 
+console.log(nameData)
 ctx.clearRect(0, 0, canvasName.width, canvasName.height)
 
 class nameBodys{
@@ -75,8 +77,10 @@ class nameBodys{
         for(let c in this.vectorOfPos){
             this.vectorOfBodys.push(
                 Bodies.circle(
-                    this.vectorOfPos[c].x,
-                    this.vectorOfPos[c].y, 
+                    // this.vectorOfPos[c].x,
+                    // this.vectorOfPos[c].y, 
+                    0,
+                    0,
                     this.radius,{
                         density: 0.8,
                         friction: 0,

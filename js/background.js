@@ -1,4 +1,6 @@
 
+
+
 let Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
@@ -166,7 +168,9 @@ class Sketch{
     }
 }
 
-window.onload = function(){
+//resizers, scrollers and pointers events
+
+document.addEventListener('DOMContentLoaded', function() {
     let animation = new Sketch();
     
     window.addEventListener('resize', function(){
@@ -196,14 +200,10 @@ window.onload = function(){
         let rect = scrollPage.getBoundingClientRect()
         scrollValue = Math.max(0, -rect.top)
     }
-
-}
-
+});
 
 
 
-
-// defineScroll()
 
 
 
