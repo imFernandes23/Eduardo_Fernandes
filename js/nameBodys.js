@@ -31,51 +31,37 @@ class nameBodys{
     defineCirclesPositions(page){
         this.page = page;
         this.vectorOfPos = []
-
-        if(this.page >= 0){
             
-            this.sx = window.innerWidth * this.starts[page].x;
-            this.sy = window.innerHeight * this.starts[page].y;
+        this.sx = window.innerWidth * this.starts[page].x;
+        this.sy = window.innerHeight * this.starts[page].y;
 
-            let points = []
+        let points = []
 
-            for(let line in this.data[page].nameData){
-                for(let col in this.data[page].nameData[line]){
-                    points.push({
-                        x: this.data[page].nameData[line][col].x * this.margin + this.sx,
-                        y: this.data[page].nameData[line][col].y * this.margin + this.sy,
-                        s: Math.random() * 15 + 10,
-                    })
-                }
-            }
-            let count = Math.floor(this.number/points.length);
-            let val = this.number % points.length
-            let result = []
-
-            for(let i = 0; i < count; i++){
-                let arr = [...result,...points]
-                result = arr
-            }
-
-            for(let i = 0; i < val; i++){
-                result.push(points[i])
-            }
-
-            this.vectorOfPos = result
-
-        }else{
-
-            let radius = window.innerWidth * 0.05
-
-            for(let i = 0; i < this.number; i++){
-                let angle = Math.random() * 2 * Math.PI;
-                this.vectorOfPos.push({
-                    x: this.sx + Math.random() * radius * Math.cos(angle),
-                    y: this.sy + Math.random() * radius * Math.sin(angle),
-                    s: Math.random()* 15 + 10
+        for(let line in this.data[page].nameData){
+            for(let col in this.data[page].nameData[line]){
+                points.push({
+                    x: this.data[page].nameData[line][col].x * this.margin + this.sx,
+                    y: this.data[page].nameData[line][col].y * this.margin + this.sy,
+                    s: Math.random() * 20 + 5,
                 })
             }
         }
+        let count = Math.floor(this.number/points.length);
+        let val = this.number % points.length
+        let result = []
+
+        for(let i = 0; i < count; i++){
+            let arr = [...result,...points]
+            result = arr
+        }
+
+        for(let i = 0; i < val; i++){
+            result.push(points[i])
+        }
+
+        this.vectorOfPos = result
+
+
 
     }
 
@@ -122,7 +108,7 @@ class nameBodys{
 
             let dist2 = Math.sqrt(dx*dx + dy*dy)
 
-                if( dist > r *2 ){
+                if( dist > r ){
                 Body.setPosition(this.vectorOfBodys[i],{
                     x: posX += dx/this.vectorOfPos[i].s,
                     y: posY += dy/this.vectorOfPos[i].s

@@ -197,15 +197,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let fullData = titleData()
 
     let animation = new Sketch(fullData);
+
+    const knowPage = document.querySelector("#front-k")
     
     window.addEventListener('resize', function(){
         animation.handleResize()
     }, { passive: true })
     
     window.addEventListener('mousemove', function(e){
+
         mouseLocal.x = e.clientX
         mouseLocal.y = e.clientY
         animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+
+        if(atualPage === 1){
+            knowPage.style.visibility = 'visible'
+            knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
+        }else{
+            knowPage.style.visibility = 'hidden'
+        }
     
     })
     
@@ -224,7 +234,13 @@ document.addEventListener('DOMContentLoaded', function() {
             atualPage = page
             animation.nameTitle.defineCirclesPositions(atualPage)
         }
-        console.log(page)
+
+        if(atualPage === 1){
+            knowPage.style.visibility = 'visible'
+            knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
+        }else{
+            knowPage.style.visibility = 'hidden'
+        }
 
     })
     
