@@ -181,35 +181,37 @@ class Sketch{
 //resizers, scrollers and pointers events
 
 document.addEventListener('DOMContentLoaded', function() {
-    let animation = new Sketch();
+    titleData()
+
+    // let animation = new Sketch();
     
-    window.addEventListener('resize', function(){
-        animation.handleResize()
-    }, { passive: true })
+    // window.addEventListener('resize', function(){
+    //     animation.handleResize()
+    // }, { passive: true })
     
-    window.addEventListener('mousemove', function(e){
-        mouseLocal.x = e.clientX
-        mouseLocal.y = e.clientY
-        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    // window.addEventListener('mousemove', function(e){
+    //     mouseLocal.x = e.clientX
+    //     mouseLocal.y = e.clientY
+    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
     
-    })
+    // })
     
-    window.addEventListener('touchmove', function(e){
-        mouseLocal.x = e.touches[0].clientX
-        mouseLocal.y = e.touches[0].clientY
-        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-    })
+    // window.addEventListener('touchmove', function(e){
+    //     mouseLocal.x = e.touches[0].clientX
+    //     mouseLocal.y = e.touches[0].clientY
+    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    // })
     
-    scrollPage.addEventListener("scroll", function(e){
-        let rect = mainPage.getBoundingClientRect()
-        scrollValue = Math.max(0, -rect.top)
-        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-    })
+    // scrollPage.addEventListener("scroll", function(e){
+    //     let rect = mainPage.getBoundingClientRect()
+    //     scrollValue = Math.max(0, -rect.top)
+    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    // })
     
-    function defineScroll(){
-        let rect = scrollPage.getBoundingClientRect()
-        scrollValue = Math.max(0, -rect.top)
-    }
+    // function defineScroll(){
+    //     let rect = scrollPage.getBoundingClientRect()
+    //     scrollValue = Math.max(0, -rect.top)
+    // }
 });
 
 
