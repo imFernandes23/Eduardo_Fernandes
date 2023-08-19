@@ -31,11 +31,20 @@ var mouseLocal = {
 var color1 = '#885DD7'
 var color2 = '#1a1a1a'
 
+var atualPage = 0
+
 class Sketch{
-    constructor(){
+    constructor(dataName){
         this.time = 0;
         this.width = window.innerWidth;
         this.height = window.innerHeight;
+        this.data = dataName;
+        this.arrayOfTitles =  [
+            {x: 0.075, y: 0.2},
+            {x: 0.070, y: 1.8},
+            {x: 0.5, y: 2.8},
+            {x: 0.03, y: 3.05},
+        ]
         this.physics();
         this.initPaper();
         this.addObjects();
@@ -129,8 +138,12 @@ class Sketch{
 
         this.rectangleCenario3 = new rectangleBodys(0.2,4,0.4,0.12,15,color1,450)
         World.add(this.engine.world, this.rectangleCenario3.vectorOfBodys)
+
+        
         //name title
-        this.nameTitle = new nameBodys(0.075, 0.2)
+        this.nameTitle = new nameBodys(this.data, this.arrayOfTitles)
+        this.nameTitle.defineCirclesPositions(0);
+        this.nameTitle.createBodys()
         World.add(this.engine.world, this.nameTitle.vectorOfBodys)
 
 
@@ -181,37 +194,44 @@ class Sketch{
 //resizers, scrollers and pointers events
 
 document.addEventListener('DOMContentLoaded', function() {
-    titleData()
+    let fullData = titleData()
 
-    // let animation = new Sketch();
+    let animation = new Sketch(fullData);
     
-    // window.addEventListener('resize', function(){
-    //     animation.handleResize()
-    // }, { passive: true })
+    window.addEventListener('resize', function(){
+        animation.handleResize()
+    }, { passive: true })
     
-    // window.addEventListener('mousemove', function(e){
-    //     mouseLocal.x = e.clientX
-    //     mouseLocal.y = e.clientY
-    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    window.addEventListener('mousemove', function(e){
+        mouseLocal.x = e.clientX
+        mouseLocal.y = e.clientY
+        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
     
-    // })
+    })
     
-    // window.addEventListener('touchmove', function(e){
-    //     mouseLocal.x = e.touches[0].clientX
-    //     mouseLocal.y = e.touches[0].clientY
-    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-    // })
+    window.addEventListener('touchmove', function(e){
+        mouseLocal.x = e.touches[0].clientX
+        mouseLocal.y = e.touches[0].clientY
+        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    })
     
-    // scrollPage.addEventListener("scroll", function(e){
-    //     let rect = mainPage.getBoundingClientRect()
-    //     scrollValue = Math.max(0, -rect.top)
-    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
-    // })
+    scrollPage.addEventListener("scroll", function(e){
+        let rect = mainPage.getBoundingClientRect()
+        scrollValue = Math.max(0, -rect.top)
+        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+        let page = Math.floor(scrollValue / window.innerHeight)
+        if(page !== atualPage){
+            atualPage = page
+            animation.nameTitle.defineCirclesPositions(atualPage)
+        }
+        console.log(page)
+
+    })
     
-    // function defineScroll(){
-    //     let rect = scrollPage.getBoundingClientRect()
-    //     scrollValue = Math.max(0, -rect.top)
-    // }
+    function defineScroll(){
+        let rect = scrollPage.getBoundingClientRect()
+        scrollValue = Math.max(0, -rect.top)
+    }
 });
 
 
