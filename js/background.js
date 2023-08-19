@@ -98,7 +98,7 @@ class Sketch{
 
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0,0.25,50, color1, color1)
+        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,50, color1, color1)
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
@@ -114,6 +114,11 @@ class Sketch{
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
+        this.circleCenario4 = new fluidBodys(0.9,3.2,0.2,50, color1, color1)
+        World.add(this.engine.world, this.circleCenario4.vectorOfCircles)
+        World.add(this.engine.world, this.circleCenario4.vectorOfAnchors)
+        World.add(this.engine.world, this.circleCenario4.vectorOfLinks)
+
         //rectagle bodys
 
         this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,color1,450)
@@ -122,7 +127,8 @@ class Sketch{
         this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,color1,250)
         World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
 
-        
+        this.rectangleCenario3 = new rectangleBodys(0.2,4,0.4,0.12,15,color1,450)
+        World.add(this.engine.world, this.rectangleCenario3.vectorOfBodys)
         //name title
         this.nameTitle = new nameBodys(0.075, 0.2)
         World.add(this.engine.world, this.nameTitle.vectorOfBodys)
@@ -149,8 +155,10 @@ class Sketch{
         this.circleCenario1.handleResize(0.9,0.05,0.25)
         this.circleCenario2.handleResize(0.5,0.1,0.1,)
         this.circleCenario3.handleResize(0.1,0.1,0.05,)
+        this.circleCenario4.handleResize(0.9,3.2,0.2)
         this.rectangleCenario1.handleResize(0.2,1,0.4)
         this.rectangleCenario2.handleResize(0.85,2,0.2,)
+        this.rectangleCenario3.handleResize(0.2,4,0.4)
         this.nameTitle.handleResize(0.075,0.2)
         
         
@@ -161,8 +169,10 @@ class Sketch{
         this.project.addLayer(this.circleCenario1.drawBodys())
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
+        this.project.addLayer(this.circleCenario4.drawBodys())
         this.rectangleCenario1.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.rectangleCenario2.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
+        this.rectangleCenario3.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
         window.requestAnimationFrame(this.renderLoop.bind(this))
     }
