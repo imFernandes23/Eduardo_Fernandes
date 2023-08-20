@@ -92,6 +92,7 @@ class Sketch{
     //mouse space
         this.cursor = Bodies.circle(-50, -50,70,{
         isStatic: true,
+        friction: 0.0001,
         stiffness: 1,
         restitution: 1,
         collisionFilter: {
