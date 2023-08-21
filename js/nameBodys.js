@@ -20,7 +20,7 @@ class nameBodys{
         this.data = data;
         this.starts = starts;
         this.page = 0;
-        this.number = 1922
+        this.number = this.data[0].value
 
         this.radius = this.margin/3
         this.vectorOfPos = [];
@@ -42,7 +42,7 @@ class nameBodys{
                 points.push({
                     x: this.data[page].nameData[line][col].x * this.margin + this.sx,
                     y: this.data[page].nameData[line][col].y * this.margin + this.sy,
-                    s: Math.random() * 20 + 5,
+                    s: Math.random() * 15 + 15,
                 })
             }
         }
@@ -70,10 +70,10 @@ class nameBodys{
         for(let c in this.vectorOfPos){
             this.vectorOfBodys.push(
                 Bodies.circle(
-                    // this.vectorOfPos[c].x,
-                    // this.vectorOfPos[c].y, 
-                    0,
-                    0,
+                    this.vectorOfPos[c].x,
+                    this.vectorOfPos[c].y, 
+                    // 0,
+                    // 0,
                     this.radius,{
                         density: 0.8,
                         friction: 0,

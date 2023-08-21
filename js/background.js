@@ -41,7 +41,7 @@ class Sketch{
         this.data = dataName;
         this.arrayOfTitles =  [
             {x: 0.075, y: 0.2},
-            {x: 0.070, y: 1.8},
+            {x: 0.070, y: 1.85},
             {x: 0.5, y: 2.8},
             {x: 0.03, y: 3.05},
         ]
@@ -179,7 +179,7 @@ class Sketch{
     }
 
     renderLoop(){
-        this.time += 0.05;
+        this.time += 0.1;
         this.project.addLayer(this.circleCenario1.drawBodys())
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
@@ -224,6 +224,13 @@ document.addEventListener('DOMContentLoaded', function() {
         mouseLocal.x = e.touches[0].clientX
         mouseLocal.y = e.touches[0].clientY
         animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+
+        if(atualPage === 1){
+            knowPage.style.visibility = 'visible'
+            knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
+        }else{
+            knowPage.style.visibility = 'hidden'
+        }
     })
     
     scrollPage.addEventListener("scroll", function(e){

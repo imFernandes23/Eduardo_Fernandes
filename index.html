@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="/css/main-page.css">
     <link rel="stylesheet" href="/css/know-page.css">
     <link rel="stylesheet" href="/css/works-page.css">
+    <link rel="stylesheet" href="/css/about-page.css">
 
 </head>
 <body>
+    
     
     <div id="scroll-page">
         <canvas id="name-bg"></canvas>
@@ -70,23 +72,25 @@
 
         <section class="page" id="works-page">
             <div class="container">
-                <ul class="project-list">
-                    <li>Some Project</li>
-                    <li>Some Project</li>
-                    <li>Some Project</li>
-                    <li>Some Project</li>
+                <ul class="project-list active">
+
                 </ul>
 
-                <div class="project-card">
-                    <div class="img-card">
-
+                <div class="project-card ">
+                    <div class="btn-close" onclick="showCard()">X</div>
+                    <div class="img-card" onclick="stateCard()">
+                        <img id="card-img" src="./image/wsmaps.png" alt="">
                     </div>
-                    <div class="card-text">
-                        <p class="text">some text some text some text some text some text some text some text some text some text some text some text some text some text some textsome text some text some text some text some text some text some text</p>
-                        <div class="btn-img">
+                    <div class="card-text ">
+                        
+                        <h2 id="card-title"></h2>
+                        <p class="text" id="card-text"> </p>
+                        <a href="#" class="btn-link" target="_blank">Visit</a>
+                        <div class="btn-img" onclick="stateCard()">
                             +
                         </div>
                     </div>
+                    
 
                 </div>
             </div>
@@ -94,7 +98,12 @@
         </section>
 
         <section class="page" id="aboult-page">
-
+            <div class="container-2">
+                <p>
+                    Hello, I'm Eduardo from Brazil, Computer Engineer, with skills in python and frontend development. This web page was developed with Matter.js, Paper.js, lots of trigonometry and physics in my spare time. Let's build a solution to your problem!
+                </p>
+                <div class="btn-contact" id="btn-contact">Contact me!</div>
+            </div>
         </section>
 
         </div>
@@ -103,7 +112,7 @@
     </div>
     
     <script src="/js/titleData.js"></script>
-    <script src="/js/main-page.js"></script>
+    <script src="/js/Data.js"></script>
     <script src="/js/matter.js"></script>
     <script src="/js/paper-full.js"></script>
     <script src="/js/nameBodys.js" ></script>
@@ -116,6 +125,8 @@
 
     <script defer src="/js/background.js"></script>
     
+    <script src="/js/main-page.js"></script>
+    <script src="/js/works-page.js"></script>
     
 </body>
 </html> 

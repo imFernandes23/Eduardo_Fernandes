@@ -39,15 +39,6 @@
 
 }
 
-h2{
-    position: absolute;
-    display: block;
-    font-size: max(5vw, 50px);
-    bottom: 5%;
-    left: 5%;
-    font-family: bauhau93;
-    color: white;
-}
 
 @media screen and (max-width: 670px) {
     .content{
