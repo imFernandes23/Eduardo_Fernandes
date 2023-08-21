@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(page !== atualPage){
             atualPage = page
             animation.nameTitle.defineCirclesPositions(atualPage)
+            console.log(atualPage)
         }
 
         if(atualPage === 1){
