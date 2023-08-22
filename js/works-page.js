@@ -26,7 +26,7 @@ function showCard(item) {
 }
 
 function hydrateCard(item){
-
+     console.log(item)
     let cardTitle = document.querySelector("#card-title")
     cardTitle.textContent = item.title
 
@@ -37,7 +37,8 @@ function hydrateCard(item){
     cardImg.src = item.imgDir
 
     let cardHref = document.querySelector(".btn-link")
-    cardHref.href = item.href
+    console.log(item.href)
+    // cardHref.href = item.href
 }
 
 
