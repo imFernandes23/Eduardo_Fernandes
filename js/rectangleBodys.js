@@ -57,11 +57,16 @@ class rectangleBodys{
         this.vectorOfBodys.push(
             Bodies.rectangle(this.cx,this.cy,this.size, this.size, {
                 isStatic: true,
+                isSensor: true,
                 chamfer: true,
                 angle: this.angle,
+                collisionFilter:{
+                    category: 0x0000,
+                    mask: 0x0000,
+                },
                 render:{
                     fillStyle: this.color
-                }
+                },
             })
         )
 
@@ -72,6 +77,11 @@ class rectangleBodys{
                     this.vectorOfPosi[i].y,
                     this.circleRadius,{
                         isStatic: true,
+                        isSensor:true,
+                        collisionFilter:{
+                            category: 0x0000,
+                            mask: 0x0000,
+                        },
                         render: {
                             fillStyle: "#1a1a1a"
                         }

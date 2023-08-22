@@ -60,10 +60,12 @@ class fluidBodys{
                         desity: 0,
                         restitution: 0.1,
                         isStatic: true,
+                        isSensor: true,
                         render:{
                             fillStyle: 'transparent'
                         },collisionFilter:{
-                            group: -1
+                            category: 0x0000,
+                            mask: 0x0000,
                         }
                     }
                 )

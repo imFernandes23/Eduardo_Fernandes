@@ -191,7 +191,6 @@ class Sketch{
         this.rectangleCenario2.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.rectangleCenario3.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
-
         window.requestAnimationFrame(this.renderLoop.bind(this))
         
     }
