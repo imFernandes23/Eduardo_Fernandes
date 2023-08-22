@@ -22,7 +22,7 @@ class nameBodys{
         this.page = 0;
         this.number = this.data[0].value
 
-        this.radius = this.margin/3
+        this.radius = this.margin/2.4
         this.vectorOfPos = [];
         this.vectorOfBodys = [];
 
@@ -133,7 +133,7 @@ class nameBodys{
 
         for(let i in this.vectorOfBodys){
             let r = this.vectorOfBodys[i].circleRadius;
-            let r2 = this.margin / 3
+            let r2 = this.margin / 2.4
             let newRadius = r2 / r
             Body.scale(this.vectorOfBodys[i], newRadius, newRadius)
         }

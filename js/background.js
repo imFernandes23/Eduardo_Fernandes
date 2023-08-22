@@ -40,8 +40,8 @@ class Sketch{
         this.height = window.innerHeight;
         this.data = dataName;
         this.arrayOfTitles =  [
-            {x: 0.075, y: 0.2},
-            {x: 0.070, y: 1.85},
+            {x: 0.075, y: 0.30},
+            {x: 0.070, y: 1.825},
             {x: 0.5, y: 2.8},
             {x: 0.03, y: 3.05},
         ]

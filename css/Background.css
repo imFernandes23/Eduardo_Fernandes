@@ -30,7 +30,7 @@ body,html{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 0;
 }
 
 #paper-background{
@@ -48,7 +48,8 @@ height: 400vh;
 
 #matter-background{
     width: 100vw;
-    height: 400vh;
+    height: 100%;
+    overflow: visible;
     position: absolute;
     top:0;
     left: 0;;

@@ -1,14 +1,28 @@
 
-h1{
-    position: absolute;
-    display: block;
-    font-family: bauhau93;
-    font-size: max(2.7vw, 40px);
+.main-text{
+    display: flex;
+    flex-direction: column;
     color: white;
-    z-index: 1000;
-    top: 45vh;
-    left: 15vw;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    gap: min(16vw, 110px);
+    top:25%;
 }
+
+.text-main:nth-child(1){
+    margin-left: 5%;
+    font-size: max(2vw, 30px);
+    font-family: bauhau93;
+}
+
+.text-main:nth-child(2){
+    margin-left: 10%;
+    font-size: max(3vw, 40px);
+    font-family: bauhau93;
+}
+
 
 .link-grade{
     height: 100px;

@@ -4,14 +4,12 @@ function titleData(){
     const fullData = []
 
     ctx.fillStyle = 'white'
-    ctx.font = '25px bauhau93 ' ;
-    ctx.fillText("Hello, I'm", 0, 20)
-    ctx.font = 'bauhau93 25px';
-    ctx.fillText('Eduardo', 5 ,40)
+    ctx.font = '25px bauhau93';
+    ctx.fillText('Eduardo', 0 ,19)
     // ctx.strokeStyle = 'white'
-    // ctx.strokeRect(0,0, 122, 42)
+    // ctx.strokeRect(0,0, 92, 21)
 
-    const textCoordinates1 = ctx.getImageData(0,0, 106, 40);
+    const textCoordinates1 = ctx.getImageData(0,0, 92, 20);
     
     let title1 = extractData(textCoordinates1)
 
@@ -20,12 +18,11 @@ function titleData(){
     ctx.clearRect(0, 0, canvasName.width, canvasName.height)
 
     ctx.fillStyle = 'white'
-    ctx.font = '27px bauhau93 ' ;
-    ctx.fillText("Skills", 0, 20)
-    // ctx.strokeStyle = 'white'
-    // ctx.strokeRect(0,0, 56, 22)
+    ctx.font = '31px bauhau93 ' ;
+    ctx.fillText("Skills", 0, 25)
 
-    const textCoordinates2 = ctx.getImageData(0,0, 60, 22);
+
+    const textCoordinates2 = ctx.getImageData(0,0, 70, 32);
     
     let title2 = extractData(textCoordinates2)
 
@@ -36,8 +33,7 @@ function titleData(){
     ctx.fillStyle = 'white'
     ctx.font = '27px bauhau93 ' ;
     ctx.fillText("Works", 0, 20)
-    // ctx.strokeStyle = 'white'
-    // ctx.strokeRect(0,0, 66, 22)
+
 
     const textCoordinates3 = ctx.getImageData(0,0, 72, 22);
     
@@ -48,12 +44,11 @@ function titleData(){
     ctx.clearRect(0, 0, canvasName.width, canvasName.height)
 
     ctx.fillStyle = 'white'
-    ctx.font = '27px bauhau93 ' ;
-    ctx.fillText("About", 0, 20)
-    // ctx.strokeStyle = 'white'
-    // ctx.strokeRect(0,0, 66, 22)
+    ctx.font = '28px bauhau93 ' ;
+    ctx.fillText("About", 0, 22)
 
-    const textCoordinates4 = ctx.getImageData(0,0, 72, 22);
+
+    const textCoordinates4 = ctx.getImageData(0,0, 75, 24);
     
     let title4 = extractData(textCoordinates4)
 
@@ -61,7 +56,9 @@ function titleData(){
 
     fullData.push(title4)
 
+    canvasName.remove()
 
+    console.log(fullData)
     return fullData
 }
 

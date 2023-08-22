@@ -18,6 +18,6 @@ let Data = [
         title: "Portifólio",
         text: "Made with Matte.js to simulate physics with JavaScript, and Paper.js to create drawings, this page is my personal portfolio, where I intend to add new projects.",
         imgDir: "./image/portifolio.png",
-        href: "#"
+        href: "https://imfernandes23.github.io/Eduardo_Fernandes/"
     },
 ]
