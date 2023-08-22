@@ -40,7 +40,7 @@ class Sketch{
         this.height = window.innerHeight;
         this.data = dataName;
         this.arrayOfTitles =  [
-            {x: 0.075, y: 0.30},
+            {x: 0.075, y: 0.3},
             {x: 0.070, y: 1.825},
             {x: 0.5, y: 2.8},
             {x: 0.03, y: 3.05},
@@ -52,17 +52,21 @@ class Sketch{
     }
 
     physics(){
-        this.engine = Engine.create(),
+        this.engine = Engine.create({
+            // enableSleeping: true
+        }),
         this.world = this.engine.world;
         
         // remove universal gravity
         this.engine.gravity.x = 0;
         this.engine.gravity.y = 0
+        
+        
 
         // create renderer
         this.render = Render.create({
             element: document.querySelector('#matter-background'),
-            engine: this.engine,
+            engine: this.engine,    
             options: {
                 width: this.width,
                 height: this.height * numberOfPages,
@@ -70,7 +74,6 @@ class Sketch{
                 background: "transparent",
                 wireframes: false,
                 showAngleIndicator: false,
-                PixelRatio: 2,
             }
         });
         Render.run(this.render);
@@ -179,7 +182,7 @@ class Sketch{
     }
 
     renderLoop(){
-        this.time += 0.1;
+        this.time += 0.2;
         this.project.addLayer(this.circleCenario1.drawBodys())
         this.project.addLayer(this.circleCenario2.drawBodys())
         this.project.addLayer(this.circleCenario3.drawBodys())
@@ -188,7 +191,9 @@ class Sketch{
         this.rectangleCenario2.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.rectangleCenario3.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
+
         window.requestAnimationFrame(this.renderLoop.bind(this))
+        
     }
 }
 
@@ -241,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if(page !== atualPage){
             atualPage = page
             animation.nameTitle.defineCirclesPositions(atualPage)
-            console.log(atualPage)
         }
 
         if(atualPage === 1){

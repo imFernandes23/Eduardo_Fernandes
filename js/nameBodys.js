@@ -42,7 +42,7 @@ class nameBodys{
                 points.push({
                     x: this.data[page].nameData[line][col].x * this.margin + this.sx,
                     y: this.data[page].nameData[line][col].y * this.margin + this.sy,
-                    s: Math.random() * 15 + 15,
+                    s: Math.random() * 10 + 5,
                 })
             }
         }
@@ -93,9 +93,6 @@ class nameBodys{
 
     nameEffect(x , y , r){
         for(let i in this.vectorOfBodys){
- 
-
-
             let dx = this.vectorOfPos[i].x - x
             let dy = this.vectorOfPos[i].y - y
             let dist = Math.sqrt(dx*dx + dy*dy) 
