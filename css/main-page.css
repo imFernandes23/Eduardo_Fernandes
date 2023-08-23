@@ -7,7 +7,7 @@
     width: 100%;
     height: fit-content;
     position: relative;
-    gap: min(16vw, 120px);
+    gap: min(15vw, 150px);
     top:25%;
 }
 

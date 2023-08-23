@@ -40,9 +40,9 @@ class Sketch{
         this.data = dataName;
         this.arrayOfTitles =  [
             {x: 0.075, y: 0.3},
-            {x: 0.070, y: 1.825},
+            {x: 0.070, y: 1.7},
             {x: 0.5, y: 2.8},
-            {x: 0.03, y: 3.05},
+            {x: 0.03, y: 3.0},
         ]
         this.physics();
         this.initPaper();

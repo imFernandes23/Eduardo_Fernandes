@@ -12,7 +12,7 @@ class nameBodys{
         let marginR = window.innerWidth / 150;
 
         if(marginR > 6){
-            this.margin = 6;
+            this.margin = 8;
         }else{
             this.margin = marginR
         }
@@ -120,8 +120,8 @@ class nameBodys{
 
         let marginR = window.innerWidth / 150;
 
-        if(marginR > 6){
-            this.margin = 6;
+        if(marginR > 8){
+            this.margin = 8;
         }else{
             this.margin = marginR
         }
