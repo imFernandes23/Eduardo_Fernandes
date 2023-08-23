@@ -7,13 +7,13 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    padding-top: 30%;
+    padding-top: min(30%, 200px);
 }
 
 .container-2 p{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: max(1.3vw,15px);
+    font-size: max(1vw,15px);
 }
 
 .btn-contact{
