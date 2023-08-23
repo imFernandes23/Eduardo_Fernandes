@@ -58,7 +58,6 @@ function titleData(){
 
     canvasName.remove()
 
-    console.log(fullData)
     return fullData
 }
 

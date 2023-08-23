@@ -42,7 +42,7 @@ class nameBodys{
                 points.push({
                     x: this.data[page].nameData[line][col].x * this.margin + this.sx,
                     y: this.data[page].nameData[line][col].y * this.margin + this.sy,
-                    s: Math.random() * 10 + 5,
+                    s: Math.random() * 5 + 5,
                 })
             }
         }

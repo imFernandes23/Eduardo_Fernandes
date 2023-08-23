@@ -8,14 +8,14 @@
     display: flex ;
     gap: 10px;
     flex-direction: column;
-    top: 45%;
+    top: 50%;
     transform: translateY(-50%);
     align-items: center;
 
 }
 
 .container > .project-list {
-    text-decoration: none;
+
     font-family: bauhau93;
     font-size: min(60px, 45px);
     color: white;
@@ -29,6 +29,7 @@
 
 
 .container > .project-list > li {
+    list-style: none;
     cursor: pointer;
     transition: 1s;
 }

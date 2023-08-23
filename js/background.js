@@ -21,6 +21,7 @@ var wallsCategory = 0x0001,
 
 var scrollPage = document.getElementById("scroll-page")
 var mainPage = document.getElementById("main-page")
+var pages = document.querySelectorAll(".page")
 
 var numberOfPages = 4
 var scrollValue = 0;
@@ -36,8 +37,6 @@ var atualPage = 0
 class Sketch{
     constructor(dataName){
         this.time = 0;
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
         this.data = dataName;
         this.arrayOfTitles =  [
             {x: 0.075, y: 0.3},
@@ -68,8 +67,8 @@ class Sketch{
             element: document.querySelector('#matter-background'),
             engine: this.engine,    
             options: {
-                width: this.width,
-                height: this.height * numberOfPages,
+                width: window.innerWidth,
+                height: window.innerHeight * numberOfPages,
                 showVelocity: false,
                 background: "transparent",
                 wireframes: false,
@@ -162,13 +161,11 @@ class Sketch{
 
 
     handleResize(){
-        this.width = window.innerWidth;
-        this.height = window.innerHeight
-        this.render.canvas.width = this.width;
-        this.render.canvas.height = this.height * numberOfPages;
-        this.paperCanvas.width = this.width;
-        this.paperCanvas.height = this.height * numberOfPages;
-        this.project.view.viewSize = new paper.Size(this.width,this.height * numberOfPages)
+        this.render.canvas.width = window.innerWidth;
+        this.render.canvas.height = window.innerHeight * numberOfPages;
+        this.paperCanvas.width = window.innerWidth;
+        this.paperCanvas.height = window.innerHeight * numberOfPages;
+        this.project.view.viewSize = new paper.Size(window.innerWidth,window.innerHeight * numberOfPages)
         this.circleCenario1.handleResize(0.9,0.05,0.25)
         this.circleCenario2.handleResize(0.5,0.1,0.1,)
         this.circleCenario3.handleResize(0.1,0.1,0.05,)
@@ -198,7 +195,7 @@ class Sketch{
 
 //resizers, scrollers and pointers events
 
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
     let fullData = titleData()
 
     let animation = new Sketch(fullData);
@@ -207,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('resize', function(){
         animation.handleResize()
+        doheight()
     }, { passive: true })
     
     window.addEventListener('mousemove', function(e){
@@ -261,6 +259,12 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollValue = Math.max(0, -rect.top)
     }
 });
+
+function doheight(){
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
+}
+
+doheight()
 
 
 
