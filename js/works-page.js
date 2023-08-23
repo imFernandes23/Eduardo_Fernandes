@@ -26,7 +26,7 @@ function showCard(item) {
 }
 
 function hydrateCard(item){
-     console.log(item)
+
     let cardTitle = document.querySelector("#card-title")
     cardTitle.textContent = item.title
 

@@ -23,6 +23,7 @@ body,html{
     margin: 0;
     overflow: hidden;
     width: 100vw;
+    height: calc(var(--vh) * 4);
 }
 
 #name-bg{

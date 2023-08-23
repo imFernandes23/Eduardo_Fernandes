@@ -110,36 +110,36 @@ class Sketch{
 
         //fluid Circles
 
-        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,50, color1, color1)
+        this.circleCenario1 = new fluidBodys(0.9,0.05,0.25,40, color1, color1)
         World.add(this.engine.world, this.circleCenario1.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario1.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario1.vectorOfLinks)
 
         
-        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,30, color1, color1)
+        this.circleCenario2 = new fluidBodys(0.5,0.1,0.1,25, color1, color1)
         World.add(this.engine.world, this.circleCenario2.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario2.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario2.vectorOfLinks)
 
-        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,15, color1, color1)
+        this.circleCenario3 = new fluidBodys(0.1,0.1,0.05,10, color1, color1)
         World.add(this.engine.world, this.circleCenario3.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario3.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario3.vectorOfLinks)
 
-        this.circleCenario4 = new fluidBodys(0.9,3.2,0.2,50, color1, color1)
+        this.circleCenario4 = new fluidBodys(0.9,3.2,0.2,40, color1, color1)
         World.add(this.engine.world, this.circleCenario4.vectorOfCircles)
         World.add(this.engine.world, this.circleCenario4.vectorOfAnchors)
         World.add(this.engine.world, this.circleCenario4.vectorOfLinks)
 
         //rectagle bodys
 
-        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,15,color1,450)
+        this.rectangleCenario1 = new rectangleBodys(0.2,1,0.4,0.12,10,color1,450)
         World.add(this.engine.world, this.rectangleCenario1.vectorOfBodys)
 
-        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,8,color1,250)
+        this.rectangleCenario2 = new rectangleBodys(0.85,2,0.2,0.25,5,color1,250)
         World.add(this.engine.world, this.rectangleCenario2.vectorOfBodys)
 
-        this.rectangleCenario3 = new rectangleBodys(0.2,4,0.4,0.12,15,color1,450)
+        this.rectangleCenario3 = new rectangleBodys(0.2,4,0.4,0.12,10,color1,450)
         World.add(this.engine.world, this.rectangleCenario3.vectorOfBodys)
 
         

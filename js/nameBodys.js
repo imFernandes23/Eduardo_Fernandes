@@ -21,7 +21,6 @@ class nameBodys{
         this.starts = starts;
         this.page = 0;
         this.number = this.data[0].value
-
         this.radius = this.margin/2.4
         this.vectorOfPos = [];
         this.vectorOfBodys = [];
@@ -42,7 +41,7 @@ class nameBodys{
                 points.push({
                     x: this.data[page].nameData[line][col].x * this.margin + this.sx,
                     y: this.data[page].nameData[line][col].y * this.margin + this.sy,
-                    s: Math.random() * 5 + 5,
+                    s: Math.random() * 5,
                 })
             }
         }
@@ -92,26 +91,27 @@ class nameBodys{
     }
 
     nameEffect(x , y , r){
-        for(let i in this.vectorOfBodys){
-            let dx = this.vectorOfPos[i].x - x
-            let dy = this.vectorOfPos[i].y - y
-            let dist = Math.sqrt(dx*dx + dy*dy) 
-            
-            dx = this.vectorOfPos[i].x - this.vectorOfBodys[i].position.x;
-            dy = this.vectorOfPos[i].y - this.vectorOfBodys[i].position.y;
 
-            let posX = this.vectorOfBodys[i].position.x
-            let posY = this.vectorOfBodys[i].position.y
+        for( let i = 0; i < this.vectorOfBodys.length; i++){
+            let distX = this.vectorOfPos[i].x - x;
+            let distY = this.vectorOfPos[i].y - y;
+            let dist = Math.sqrt(distX*distX + distY*distY)
 
-            let dist2 = Math.sqrt(dx*dx + dy*dy)
-
-                if( dist > r ){
+            if(dist > r ){
+                let dx = this.vectorOfPos[i].x - this.vectorOfBodys[i].position.x;
+                let dy = this.vectorOfPos[i].y - this.vectorOfBodys[i].position.y;
+                let px = this.vectorOfBodys[i].position.x;
+                let py = this.vectorOfBodys[i].position.y;
                 Body.setPosition(this.vectorOfBodys[i],{
-                    x: posX += dx/this.vectorOfPos[i].s,
-                    y: posY += dy/this.vectorOfPos[i].s
-                })
-            } 
+                    x: px += dx/(20 + this.vectorOfPos[i].s) ,
+                    y: py += dy/(20 + this.vectorOfPos[i].s)
+                },true)
+                
+            }
         }
+
+   
+
     }
 
     handleResize(x,y){
