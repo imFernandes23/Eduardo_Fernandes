@@ -39,18 +39,26 @@
 .link-box{
     position: relative;
     display: flex;
+    padding: 10px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    width: 60px;
+    width: fit-content;
     font-size: 40px;
     text-decoration: none;
     color: var(--mainColor2);
     height: 60px;
     background-color: var(--mainColor1);
-    border-radius: 50%;
+    border-radius: 30px;
     transition: 0.3s;
     overflow: visible;
+}
+
+.link-box p{
+    font-size: 0px;
+    font-family: bauhau93;
+    transition: 0.3s;
+    color: white;
 }
 
 #email.active::before{
@@ -78,8 +86,12 @@
 }
 
 .link-box:hover{
-    transform: translate(0, -10px);
     color: white;
+    gap: 10px;
+}
+
+.link-box:hover p{
+    font-size: 30px;
 }
 
 

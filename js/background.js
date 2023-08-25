@@ -282,6 +282,7 @@ window.addEventListener('load', function() {
     })
     
     scrollPage.addEventListener("scroll", function(e){
+        console.log('rodei')
         let rect = mainPage.getBoundingClientRect()
         scrollValue = Math.max(0, -rect.top)
         animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
