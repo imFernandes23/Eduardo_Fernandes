@@ -37,8 +37,7 @@ function hydrateCard(item){
     cardImg.src = item.imgDir
 
     let cardHref = document.querySelector(".btn-link")
-    console.log(item.href)
-    // cardHref.href = item.href
+    cardHref.href = item.href
 }
 
 

@@ -38,6 +38,14 @@ class Sketch{
     constructor(dataName){
         this.time = 0;
         this.data = dataName;
+        if(window.innerWidth < 481){ //is mobile screen?
+            this.mobile = true
+        }else{
+            this.mobile =  false
+        }
+        this.ref = {
+            mobile: this.mobile
+        }
         this.arrayOfTitles =  [
             {x: 0.075, y: 0.3},
             {x: 0.070, y: 1.7},
@@ -142,16 +150,34 @@ class Sketch{
         this.rectangleCenario3 = new rectangleBodys(0.2,4,0.4,0.12,10,color1,450)
         World.add(this.engine.world, this.rectangleCenario3.vectorOfBodys)
 
-        
-        //name title
-        this.nameTitle = new nameBodys(this.data, this.arrayOfTitles)
-        this.nameTitle.defineCirclesPositions(0);
-        this.nameTitle.createBodys()
-        World.add(this.engine.world, this.nameTitle.vectorOfBodys)
+        if(!this.mobile){
+            this.addTitle()
+        }
 
 
     }
 
+    addTitle(){
+        if(this.nameTitle){
+            World.add(this.engine.world, this.nameTitle.vectorOfBodys)
+            
+        }else{
+            this.nameTitle = new nameBodys(this.data, this.arrayOfTitles)
+            this.nameTitle.defineCirclesPositions(0);
+            this.nameTitle.createBodys()
+            World.add(this.engine.world, this.nameTitle.vectorOfBodys)
+        }
+
+        
+    }
+
+    removeeTitle(){
+        if(this.nameTitle.vectorOfBodys){
+            for(let i = 0; i < this.nameTitle.vectorOfBodys.length; i++){
+                World.remove(this.engine.world, this.nameTitle.vectorOfBodys[i])
+            }
+        }
+    }
 
     initPaper(){
         this.paperCanvas = document.getElementById('paper-background')
@@ -161,6 +187,21 @@ class Sketch{
 
 
     handleResize(){
+        if(window.innerWidth < 481){ //is mobile screen?
+            this.mobile = true
+            if(this.ref.mobile !== this.mobile){
+                this.removeeTitle()
+                this.ref.mobile = true
+            }
+
+        }else{
+            this.mobile =  false
+            if(this.ref.mobile !== this.mobile){
+                this.addTitle()
+                this.ref.mobile = false
+            }
+            
+        }
         this.render.canvas.width = window.innerWidth;
         this.render.canvas.height = window.innerHeight * numberOfPages;
         this.paperCanvas.width = window.innerWidth;
@@ -173,7 +214,9 @@ class Sketch{
         this.rectangleCenario1.handleResize(0.2,1,0.4)
         this.rectangleCenario2.handleResize(0.85,2,0.2,)
         this.rectangleCenario3.handleResize(0.2,4,0.4)
-        this.nameTitle.handleResize(0.075,0.2)
+        if(!this.mobile){
+            this.nameTitle.handleResize()
+        }
         
         
     }
@@ -187,7 +230,9 @@ class Sketch{
         this.rectangleCenario1.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.rectangleCenario2.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
         this.rectangleCenario3.rectangleEffect(this.cursor.position.x, this.cursor.position.y)
-        this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
+        if(!this.mobile){
+            this.nameTitle.nameEffect(this.cursor.position.x, this.cursor.position.y,this.cursor.circleRadius)
+        }
         window.requestAnimationFrame(this.renderLoop.bind(this))
         
     }
@@ -204,6 +249,7 @@ window.addEventListener('load', function() {
     
     window.addEventListener('resize', function(){
         animation.handleResize()
+
         doheight()
     }, { passive: true })
     

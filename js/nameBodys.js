@@ -77,10 +77,11 @@ class nameBodys{
                         density: 0.8,
                         friction: 0,
                         restitution: 0.8,
+                        
                         render:{
                             fillStyle: 'white'
                         },collisionFilter: {
-                            // group: -1,
+                            group: -1,
                             mask: nameCategory
                         }
                     }     
@@ -114,9 +115,7 @@ class nameBodys{
 
     }
 
-    handleResize(x,y){
-        this.sx = window.innerWidth * x;
-        this.sy = window.innerHeight * y;
+    handleResize(){
 
         let marginR = window.innerWidth / 150;
 

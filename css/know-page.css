@@ -36,7 +36,7 @@
 
 .k-element:nth-child(2) > .content{
     color: white;
-    transition: 0.5s;
+    transition: 1s;
 
 }
 

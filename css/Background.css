@@ -70,10 +70,49 @@ body,html{
 
 }
 
+.cond-title{
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    z-index: 1000;
+    color: white;
+    font-family: bauhau93;
+    font-size: min(12vw, 150px);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+#cond1{
+    top: 27%;
+    left: 5%;
+}
+
+#cond2{
+    top: 75%;
+    left: 5%;
+}
+
+#cond3{
+    top: 80%;
+    left: 50%;
+}
+
+#cond4{
+    top: 0;
+    left: 5%;
+}
+
+
+
 .page{
     width: 100vw;
     height: var(--vh);
     scroll-snap-align: start;
+    position: relative;
+    display: flex;
 }
 
 #scroll-page::-webkit-scrollbar{
@@ -88,3 +127,10 @@ body,html{
     background-color: var(--mainColor1);
     border: 2px solid var(--mainColor2);
 }
+
+@media screen and (max-width: 480px) {
+
+    .cond-title{
+        visibility: visible;
+    }
+  }

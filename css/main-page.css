@@ -86,13 +86,6 @@
 
 
   @media screen and (max-width: 670px) {
-    h1{
-        top: 40vh;
-        left: 0vw;
-        margin-left: 7vw;
-        margin-right: 7vw;
-
-    }
 
     .link-grade{
         top: 60vh;
