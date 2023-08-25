@@ -246,7 +246,30 @@ window.addEventListener('load', function() {
     let animation = new Sketch(fullData);
 
     const knowPage = document.querySelector("#front-k")
+
+    const target = document.querySelectorAll(".page")
+    const animationClass = 'animate'
+
+    setTimeout(animeScroll, 3000, 0)
+
+    function animeScroll(value){
+        target.forEach((element, index) => {
+            if(value === index){
+                let ani = element.querySelectorAll('[data-anime]')
+                ani.forEach((ele) => {
+                    ele.classList.add(animationClass)
+                })
+            }else{
+                let ani = element.querySelectorAll('[data-anime]')
+                ani.forEach((ele) => {
+                    ele.classList.remove(animationClass)
+                })
+            }
+        })
+    }
+
     
+
     window.addEventListener('resize', function(){
         animation.handleResize()
 
@@ -260,7 +283,6 @@ window.addEventListener('load', function() {
         animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
 
         if(atualPage === 1){
-            knowPage.style.visibility = 'visible'
             knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
         }else{
             knowPage.style.visibility = 'hidden'
@@ -282,14 +304,18 @@ window.addEventListener('load', function() {
     })
     
     scrollPage.addEventListener("scroll", function(e){
-        console.log('rodei')
         let rect = mainPage.getBoundingClientRect()
         scrollValue = Math.max(0, -rect.top)
         animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
         let page = Math.floor(scrollValue / window.innerHeight)
+
         if(page !== atualPage){
             atualPage = page
-            animation.nameTitle.defineCirclesPositions(atualPage)
+            animeScroll(page)
+            if(animation.mobile === false){
+                animation.nameTitle.defineCirclesPositions(atualPage)
+            }
+            
         }
 
         if(atualPage === 1){
@@ -299,12 +325,16 @@ window.addEventListener('load', function() {
             knowPage.style.visibility = 'hidden'
         }
 
+
+
     })
     
     function defineScroll(){
         let rect = scrollPage.getBoundingClientRect()
         scrollValue = Math.max(0, -rect.top)
     }
+
+    
 });
 
 function doheight(){
@@ -312,6 +342,8 @@ function doheight(){
 }
 
 doheight()
+
+
 
 
 
