@@ -9,6 +9,7 @@
     position: relative;
     gap: min(15vw, 150px);
     top:25%;
+    overflow: visible;
 }
 
 .text-main:nth-child(1){
@@ -21,6 +22,7 @@
     margin-left: 10%;
     font-size: max(3vw, 40px);
     font-family: bauhau93;
+    overflow: visible;
 }
 
 
@@ -94,8 +96,32 @@
     font-size: 25px;
 }
 
+.variable-text{
+    width: fit-content;
+    overflow: visible;
+}
 
+.variable-text::after{
+    content: " ";
+    position: relative;
+    display: inline-block;
+    width: 4px;
+    height: max(3vw, 40px);
+    top: 1px;
+    right: -2px;
 
+    background-color: white;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
 
   @media screen and (max-width: 670px) {
 

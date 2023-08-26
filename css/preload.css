@@ -29,7 +29,6 @@
     width: 20vw;
     height: 100vh;
     background-color: var(--mainColor2);
-    border: 0.5px solid black;
 }
 
 .bar:nth-child(1){

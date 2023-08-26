@@ -98,7 +98,7 @@ class nameBodys{
             let distY = this.vectorOfPos[i].y - y;
             let dist = Math.sqrt(distX*distX + distY*distY)
 
-            if(dist > r ){
+            if(dist > r * 1.5){
                 let dx = this.vectorOfPos[i].x - this.vectorOfBodys[i].position.x;
                 let dy = this.vectorOfPos[i].y - this.vectorOfBodys[i].position.y;
                 let px = this.vectorOfBodys[i].position.x;

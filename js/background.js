@@ -104,7 +104,7 @@ class Sketch{
         isStatic: true,
         friction: 0.0001,
         stiffness: 1,
-        restitution: 1,
+        restitution: 0.5,
         collisionFilter: {
             //mask: mouseCategory,
             category: nameCategory | cenarioCategory
@@ -290,18 +290,18 @@ window.addEventListener('load', function() {
     
     })
     
-    window.addEventListener('touchmove', function(e){
-        mouseLocal.x = e.touches[0].clientX
-        mouseLocal.y = e.touches[0].clientY
-        animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
+    // window.addEventListener('touchmove', function(e){
+    //     mouseLocal.x = e.touches[0].clientX
+    //     mouseLocal.y = e.touches[0].clientY
+    //     animation.mouseMove(mouseLocal.x, mouseLocal.y, scrollValue)
 
-        if(atualPage === 1){
-            knowPage.style.visibility = 'visible'
-            knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
-        }else{
-            knowPage.style.visibility = 'hidden'
-        }
-    })
+    //     if(atualPage === 1){
+    //         knowPage.style.visibility = 'visible'
+    //         knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
+    //     }else{
+    //         knowPage.style.visibility = 'hidden'
+    //     }
+    // })
     
     scrollPage.addEventListener("scroll", function(e){
         let rect = mainPage.getBoundingClientRect()
@@ -317,6 +317,7 @@ window.addEventListener('load', function() {
             }
             
         }
+
 
         if(atualPage === 1){
             knowPage.style.visibility = 'visible'
