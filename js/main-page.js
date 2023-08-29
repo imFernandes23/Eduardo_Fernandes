@@ -22,16 +22,16 @@ let btnContact = document.querySelector("#btn-contact").addEventListener("click"
 
 let worldsMain = [
     {
-        world: "Dev. Frontend"
+        world: "a Dev. Frontend"
     },
     {
-        world: "Python Programmer"
+        world: "a Python Programmer"
     },
     {
-        world: "Engineer"
+        world: "an Engineer"
     },
     {
-        world: "UX/UI Designer"
+        world: "an UX/UI Designer"
     }
 ]
 
