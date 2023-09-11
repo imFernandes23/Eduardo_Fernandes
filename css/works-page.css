@@ -27,9 +27,11 @@
     border:5px solid var(--mainColor1);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    
 
 }
 
@@ -55,7 +57,7 @@
     width: 150px;
     color: white;
     text-decoration: none;
-    margin: 10px;
+    margin: 15px;
     border: 5px solid var(--mainColor1);
     font-family: bauhau93;
     text-align: center;
