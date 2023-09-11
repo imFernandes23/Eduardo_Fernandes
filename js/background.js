@@ -259,7 +259,13 @@ window.addEventListener('load', function() {
                 ani.forEach((ele) => {
                     ele.classList.add(animationClass)
                 })
-            }else{
+            }
+        })
+    }
+
+    function removeAnimeScroll(value){
+        target.forEach((element, index) => {
+            if(value === index){
                 let ani = element.querySelectorAll('[data-anime]')
                 ani.forEach((ele) => {
                     ele.classList.remove(animationClass)
@@ -310,22 +316,20 @@ window.addEventListener('load', function() {
         let page = Math.floor(scrollValue / window.innerHeight)
 
         if(page !== atualPage){
-            atualPage = page
+            
             animeScroll(page)
+
+            atualPage = page
             if(animation.mobile === false){
                 animation.nameTitle.defineCirclesPositions(atualPage)
             }
             
         }
 
-
         if(atualPage === 1){
             knowPage.style.visibility = 'visible'
-            knowPage.style.clipPath =  `circle(15% at ${mouseLocal.x}px ${mouseLocal.y}px)`
-        }else{
-            knowPage.style.visibility = 'hidden'
+            knowPage.style.clipPath =  `circle(100px at ${mouseLocal.x}px ${mouseLocal.y}px)`
         }
-
 
 
     })

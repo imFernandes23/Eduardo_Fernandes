@@ -1,63 +1,95 @@
 
-const card = document.querySelector(".project-card")
-const list = document.querySelector(".project-list")
-const cardText = document.querySelector(".card-text")
-let cardShow = false
-let cardState = true
+const container = document.querySelector('.container');
+let isMouseDown = false;
+let startX;
+let scrollLeft;
 
-function showCard(item) {
+container.addEventListener('mousedown', (e) => {
+    isMouseDown = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+    container.style.cursor = 'grabbing';
+});
 
-    if(cardShow){
-        card.classList.remove("active")
-        list.classList.add("active")
-        cardShow = false
+container.addEventListener('mouseup', () => {
+    isMouseDown = false;
+    container.style.cursor = 'grab';
+});
 
-    }else{
-        card.classList.add("active")
-        list.classList.remove("active")
-        cardShow = true
-        hydrateCard(item)
-    }
-    
-    if(stateCard){
-        cardText.classList.remove("disabled")
-        cardState = true
-    }
-}
+container.addEventListener('mouseleave', () => {
+    isMouseDown = false;
+    container.style.cursor = 'grab';
+});
 
-function hydrateCard(item){
+container.addEventListener('mousemove', (e) => {
+    if (!isMouseDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 2;
+    container.scrollLeft = scrollLeft - walk;
+});
 
-    let cardTitle = document.querySelector("#card-title")
-    cardTitle.textContent = item.title
+console.log(Data)
 
-    let cardText = document.querySelector("#card-text")
-    cardText.textContent = item.text
+Data.map((item,index) => {
+    let isOpen = false
 
-    let cardImg = document.querySelector("#card-img")
-    cardImg.src = item.imgDir
+    let card = document.createElement("div")
+    card.classList.add('card')
 
-    let cardHref = document.querySelector(".btn-link")
-    cardHref.href = item.href
-}
+    let title = document.createElement("p")
+    title.classList.add('card-title')
+    title.innerHTML = item.title
+
+    let text = document.createElement("p")
+    text.classList.add('card-text')
+    text.innerHTML = item.text
+
+    let btn = document.createElement("a")
+    btn.classList.add('card-btn')
+    btn.innerHTML = "Visit"
+    btn.href = item.href
+    btn.target = "_blank"
+
+    let img = document.createElement("div")
+    img.classList.add("card-img")
+    img.style.backgroundImage = 'url(' + item.imgDir + ')'
+    img.addEventListener("click", () => {
+        if(isOpen){
+            img.classList.remove('active')
+            isOpen = !isOpen
+        }else{
+            img.classList.add('active')
+            isOpen = !isOpen
+        }
+    })
+
+    let btnImg = document.createElement('div')
+    btnImg.classList.add("card-img-btn")
+    btnImg.innerHTML = "+"
+    btnImg.addEventListener("click", () => {
+        if(isOpen){
+            img.classList.remove('active')
+            btnImg.classList.remove('active')
+            isOpen = !isOpen
+        }else{
+            img.classList.add('active')
+            btnImg.classList.add('active')
+            isOpen = !isOpen
+        }
+    })
 
 
-function stateCard() {
-    if(cardState){
-        cardText.classList.add("disabled")
-        cardState = false
-    }else{
-        cardText.classList.remove("disabled")
-        cardState = true
-    }
-}
-
-Data.map((item) => {
-    let li = document.createElement("li")
-    li.textContent = item.title
-    li.addEventListener("click", () => showCard(item))
-    list.appendChild(li)
+    card.appendChild(title)
+    card.appendChild(text)
+    card.appendChild(btn)
+    card.appendChild(img)
+    card.appendChild(btnImg)
+    container.appendChild(card)
 })
 
-let li = document.createElement("li")
-li.textContent = "More soon..."
-list.appendChild(li)
+let moreLater = document.createElement("div")
+moreLater.classList.add("end-list")
+moreLater.innerHTML = "More soon..."
+
+container.appendChild(moreLater)
