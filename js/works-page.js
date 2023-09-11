@@ -52,16 +52,7 @@ Data.map((item,index) => {
     let img = document.createElement("div")
     img.classList.add("card-img")
     img.style.backgroundImage = 'url(' + item.imgDir + ')'
-    img.addEventListener("click", () => {
-        if(isOpen){
-            img.classList.remove('active')
-            isOpen = !isOpen
-        }else{
-            img.classList.add('active')
-            isOpen = !isOpen
-        }
-    })
-
+    
     let btnImg = document.createElement('div')
     btnImg.classList.add("card-img-btn")
     btnImg.innerHTML = "+"
