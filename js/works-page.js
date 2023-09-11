@@ -29,8 +29,6 @@ container.addEventListener('mousemove', (e) => {
     container.scrollLeft = scrollLeft - walk;
 });
 
-console.log(Data)
-
 Data.map((item,index) => {
     let isOpen = false
 
